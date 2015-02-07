@@ -39,7 +39,9 @@ Dvector::Dvector(std::string fileName)
             length++;
         }
     } else {
-        throw std::invalid_argument("Le nom de fichier " + fileName + " est invalide");
+        length = 0;
+        tab = NULL;
+        return;
     }
     data.close();
     tab = new double[length];
@@ -50,7 +52,7 @@ Dvector::Dvector(std::string fileName)
             data >> tab[i];
         }
     } else {
-        throw std::runtime_error("Le fichier " + fileName + " n'a pas pu être rouvert...");
+        throw std::runtime_error("Erreur interne : le fichier " + fileName + " n'a pas pu être rouvert...");
     }
     data.close();
 }
