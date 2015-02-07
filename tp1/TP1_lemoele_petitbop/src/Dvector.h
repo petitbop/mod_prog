@@ -11,9 +11,11 @@ class Dvector
 		Dvector();
 		Dvector(int size, double init);
         Dvector(int n);
+        Dvector(Dvector& v);
         Dvector(std::string fileName);
 		~Dvector();
 		void display(std::ostream& str);
         int size();
+        double get(int i);
         void fillRandomly();
 };

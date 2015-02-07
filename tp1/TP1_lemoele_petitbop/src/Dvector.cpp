@@ -27,6 +27,14 @@ Dvector::Dvector(int n)
 	length = n;
 	tab = new double[length];
 }
+Dvector::Dvector(Dvector& v)
+{
+    length = v.size();
+    tab = new double[length];
+    for(int i = 0; i < length; i++){
+        tab[i] = v.get(i);
+    }
+}
 Dvector::Dvector(std::string fileName)
 {
     std::ifstream data;
@@ -67,6 +75,13 @@ void Dvector::display(std::ostream& str){
 int Dvector::size()
 {
     return length;
+}
+double Dvector::get(int i){
+    if(i >= 0 && i < length){
+        return tab[i];
+    } else {
+        throw std::out_of_range("Débordement d'indice dans un Dvector");
+    }
 }
 void Dvector::fillRandomly()
 {
