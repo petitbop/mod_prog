@@ -11,6 +11,7 @@ class Dvector
 		Dvector();
 		Dvector(int size, double init);
         Dvector(int n);
+        Dvector(std::string fileName);
 		~Dvector();
 		void display(std::ostream& str);
         int size();
