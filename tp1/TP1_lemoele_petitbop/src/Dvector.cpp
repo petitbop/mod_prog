@@ -28,19 +28,6 @@ Dvector::Dvector(int n, double init)
         }
     }
 }
-Dvector::Dvector(int n)
-{
-    if(n < 0){
-        throw std::invalid_argument("Tentative d'initialisation d'un Dvector de taille négative");
-    }
-    length = n;
-    if(n == 0){
-       tab = NULL; 
-    }
-    if(n > 0){
-        tab = new double[length];
-    }
-}
 Dvector::Dvector(Dvector& v)
 {
     length = v.size();

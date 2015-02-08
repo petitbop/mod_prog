@@ -9,8 +9,7 @@ class Dvector
 		int length;
 	public :
 		Dvector();
-		Dvector(int size, double init);
-        Dvector(int n);
+		Dvector(int size, double init = 0);
         Dvector(Dvector& v);
         Dvector(std::string fileName);
 		~Dvector();
