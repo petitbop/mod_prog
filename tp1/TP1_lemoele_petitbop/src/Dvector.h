@@ -1,6 +1,16 @@
-#include <iostream>
+
+#ifndef DVECTOR_H
+#define DVECTOR_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
 #include <cassert>
+#include <stdexcept>
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <ctime>
 
 class Dvector
 {
@@ -11,7 +21,8 @@ class Dvector
 	public :
 		Dvector();
 		Dvector(int size, double val = 0);
-        Dvector(Dvector& v);
+        Dvector(const Dvector& v);
+        // Dvector(Dvector& v);
         Dvector(std::string fileName);
 		~Dvector();
 		void display(std::ostream& str);
@@ -19,3 +30,5 @@ class Dvector
         double get(int i);
         void fillRandomly();
 };
+
+#endif

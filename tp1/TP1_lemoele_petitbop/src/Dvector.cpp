@@ -1,11 +1,4 @@
 #include "Dvector.h"
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <cstdlib>
-#include <ctime>
-#include <fstream>
-#include <stdexcept>
 
 void Dvector::init(int n, double val){
     if(n < 0){
@@ -21,18 +14,22 @@ void Dvector::init(int n, double val){
             tab[i] = val;
         }
     }
+    srand(time(NULL));
 }
 Dvector::Dvector()
 {
+    std::cout << "Default constructor Dvector(). \n";
     init(0);
 }
 Dvector::Dvector(int n, double val)
 {
+    std::cout << "Constructor Dvector(unsigned int length, double default_valor). \n";
     init(n, val);
 }
-Dvector::Dvector(Dvector& v)
+Dvector::Dvector(const Dvector& v)
 {
-    double vSize = v.size();
+    std::cout << "Copy constructor Dvector(const Dvector &V). \n";
+    double vSize = v.length;
     assert(vSize >= 0);
     if(vSize == 0){
         init(0);
@@ -40,12 +37,28 @@ Dvector::Dvector(Dvector& v)
     if(vSize > 0){
         init(vSize);
         for(int i = 0; i < length; i++){
-            tab[i] = v.get(i);
+            tab[i] = v.tab[i];
         }
     }
 }
+// Dvector::Dvector(Dvector& v)
+// {
+//     std::cout << "Constructor Dvector(std::string entry_file). \n";
+//     double vSize = v.size();
+//     assert(vSize >= 0);
+//     if(vSize == 0){
+//         init(0);
+//     }
+//     if(vSize > 0){
+//         init(vSize);
+//         for(int i = 0; i < length; i++){
+//             tab[i] = v.get(i);
+//         }
+//     }
+// }
 Dvector::Dvector(std::string fileName)
 {
+    std::cout << "Constructor Dvector(std::string entry_file). \n";
     std::ifstream data;
     
     data.open(fileName.c_str());
@@ -56,7 +69,7 @@ Dvector::Dvector(std::string fileName)
         while(data >> x){
             nbElem++;
         }
-    } else {    // Code à factoriser
+    } else {
         init(0);
         return;
     }
@@ -75,6 +88,7 @@ Dvector::Dvector(std::string fileName)
     data.close();
 }
 Dvector::~Dvector(){
+    std::cout << "Destructor ~Dvector(). \n";
     if(length > 0){
         delete [] tab;
     }
@@ -97,7 +111,6 @@ double Dvector::get(int i){
 }
 void Dvector::fillRandomly()
 {
-    srand(time(NULL));
     for(int i = 0; i < length; i++){
         tab[i] = ((double)rand())/RAND_MAX;
     }

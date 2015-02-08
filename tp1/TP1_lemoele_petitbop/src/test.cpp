@@ -48,6 +48,6 @@ int main (int argc, const char* argv[]) {
 	
 	std::cout<<std::endl<<"====> Test du constructeur lisant dans le fichier tp1_test2.txt :"<<std::endl;
 	Dvector v8 = Dvector("tp1_test2.txt");
-	std::cout<<"Taille : "<<v8.size()<<std::endl;
+	std::cout<<"Taille : "<<v8.size()<<std::endl<<std::endl;
 
 } 
