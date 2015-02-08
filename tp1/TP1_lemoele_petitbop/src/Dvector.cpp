@@ -91,7 +91,9 @@ Dvector::Dvector(std::string fileName)
     data.close();
 }
 Dvector::~Dvector(){
-	delete [] tab;
+    if(length > 0){
+        delete [] tab;
+    }
 }
 void Dvector::display(std::ostream& str){
 			for(int i = 0; i < length; i++){
