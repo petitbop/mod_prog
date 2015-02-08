@@ -7,9 +7,10 @@ class Dvector
 	private :
 		double *tab;
 		int length;
+        void init(int size, double val = 0);
 	public :
 		Dvector();
-		Dvector(int size, double init = 0);
+		Dvector(int size, double val = 0);
         Dvector(Dvector& v);
         Dvector(std::string fileName);
 		~Dvector();

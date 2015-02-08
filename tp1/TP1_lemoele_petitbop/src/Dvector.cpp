@@ -7,13 +7,7 @@
 #include <fstream>
 #include <stdexcept>
 
-Dvector::Dvector()
-{
-	length = 0;
-	tab = NULL;
-}
-Dvector::Dvector(int n, double init)
-{
+void Dvector::init(int n, double val){
     if(n < 0){
         throw std::invalid_argument("Tentative d'initialisation d'un Dvector de taille négative");
     }
@@ -24,19 +18,27 @@ Dvector::Dvector(int n, double init)
     if(n > 0){
         tab = new double[length];
         for(int i = 0; i < length; i++){
-            tab[i] = init;
+            tab[i] = val;
         }
     }
 }
+Dvector::Dvector()
+{
+    init(0);
+}
+Dvector::Dvector(int n, double val)
+{
+    init(n, val);
+}
 Dvector::Dvector(Dvector& v)
 {
-    length = v.size();
-    assert(length >= 0);
-    if(length == 0){
-        tab = NULL;
+    double vSize = v.size();
+    assert(vSize >= 0);
+    if(vSize == 0){
+        init(0);
     }
-    if(length > 0){
-        tab = new double[length];
+    if(vSize > 0){
+        init(vSize);
         for(int i = 0; i < length; i++){
             tab[i] = v.get(i);
         }
@@ -47,25 +49,20 @@ Dvector::Dvector(std::string fileName)
     std::ifstream data;
     
     data.open(fileName.c_str());
+    int nbElem;
     if(data){
-        int x;
-        length = 0;
+        double x;
+        nbElem = 0;
         while(data >> x){
-            length++;
+            nbElem++;
         }
     } else {    // Code à factoriser
-        length = 0;
-        tab = NULL;
+        init(0);
         return;
     }
     data.close();
 
-    if(length == 0){
-        tab = NULL;
-        return;
-    }
-
-    tab = new double[length];
+    init(nbElem);
 
     data.open(fileName.c_str());
     if(data){
