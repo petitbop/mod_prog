@@ -14,25 +14,45 @@ Dvector::Dvector()
 }
 Dvector::Dvector(int n, double init)
 {
-	assert(n > 0);
-	length = n;
-	tab = new double[length];
-	for(int i = 0; i < length; i++){
-		tab[i] = init;
-	}
+    if(n < 0){
+        throw std::invalid_argument("Tentative d'initialisation d'un Dvector de taille négative");
+    }
+    length = n;
+    if(n == 0){
+       tab = NULL; 
+    }
+    if(n > 0){
+        tab = new double[length];
+        for(int i = 0; i < length; i++){
+            tab[i] = init;
+        }
+    }
 }
 Dvector::Dvector(int n)
 {
-	assert(n > 0);
-	length = n;
-	tab = new double[length];
+    if(n < 0){
+        throw std::invalid_argument("Tentative d'initialisation d'un Dvector de taille négative");
+    }
+    length = n;
+    if(n == 0){
+       tab = NULL; 
+    }
+    if(n > 0){
+        tab = new double[length];
+    }
 }
 Dvector::Dvector(Dvector& v)
 {
     length = v.size();
-    tab = new double[length];
-    for(int i = 0; i < length; i++){
-        tab[i] = v.get(i);
+    assert(length >= 0);
+    if(length == 0){
+        tab = NULL;
+    }
+    if(length > 0){
+        tab = new double[length];
+        for(int i = 0; i < length; i++){
+            tab[i] = v.get(i);
+        }
     }
 }
 Dvector::Dvector(std::string fileName)
@@ -46,12 +66,18 @@ Dvector::Dvector(std::string fileName)
         while(data >> x){
             length++;
         }
-    } else {
+    } else {    // Code à factoriser
         length = 0;
         tab = NULL;
         return;
     }
     data.close();
+
+    if(length == 0){
+        tab = NULL;
+        return;
+    }
+
     tab = new double[length];
 
     data.open(fileName.c_str());
