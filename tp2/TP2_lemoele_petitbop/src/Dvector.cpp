@@ -102,7 +102,7 @@ int Dvector::size()
 {
     return length;
 }
-double Dvector::get(int i){
+double Dvector::get(int i){		// A supprimer (remplacé par opérateur())
     if(i >= 0 && i < length){
         return tab[i];
     } else {
@@ -113,5 +113,12 @@ void Dvector::fillRandomly()
 {
     for(int i = 0; i < length; i++){
         tab[i] = ((double)rand())/RAND_MAX;
+    }
+}
+double & Dvector::operator()(int i){
+    if(i >= 0 && i < length){
+        return tab[i];
+    } else {
+        throw std::out_of_range("Débordement d'indice dans un Dvector");
     }
 }
