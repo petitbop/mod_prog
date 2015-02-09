@@ -1,0 +1,33 @@
+README
+
+LE MOËL Emilie - PETITBON Pierre
+2A MMIS
+
+MODELISATION ET PROGRAMMATION
+TP1 : Introduction et outils
+
+
+Ce dossier contient :
+- Un Makefile contenant les cibles :
+	1) all : compilation de tous les sources
+	2) check : exécution des tests
+	3) doc : génération de la documentation via doxygen
+	4) clean : nettoyage de tous les fichiers générés
+- Un fichier analyse.txt contenant les réponses aux questions.
+- Un dossier src.
+- Un dossier doc.
+
+Le dossier src/ contient :
+- Un Makefile contenant les cibles : all, check et clean
+- Les fichiers source Dvector.cpp et Dvector.h
+- Un main : test.cpp
+- Deux fichiers texte de test de la question 3
+
+Le dossier doc/ contient :
+- Un Makefile contenant les cibles : doc et clean
+- Un fichier de configuration doxyfilerc
+
+
+Avancement du TP par rapport à l'énoncé : 
+- Les points 1 et 2 des deux phases ont été traités et testés, 
+	et semblent fonctionner conformément à la spécification.

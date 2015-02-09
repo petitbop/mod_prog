@@ -1,0 +1,28 @@
+analyse.txt
+
+TP1 : Introduction aux outils
+
+
+Question 1 :
+
+Différence entre les écritures :
+- Ecriture 1 :	Dvector x; x = Dvector (3, 1.); 
+- Ecriture 2 :	Dvector x = Dvector (3, 1.);
+
+
+L'écriture 1 utilise la surcharge d'opérateur, c'est-à-dire la redéfinition des opérateurs de base
+(opérateurs arithmétiques, de comparaison, d'affectation, etc.).
+Ici, c'est l'affectation qui est surchargée.
+L'écriture 1 fait appel à une méthode :
+		Dvector operator= (Dvector &V);
+que le développeur aura définie et implémentée dans sa classe Dvector.
+Ainsi, quand on utilise l'écriture 1, on fait plusieurs choses :
+	- On définit un objet x,
+	- On définit un objet Dvector(3, 1.),
+	- On affecte le 2e objet à x.
+Dans notre cas, où la surcharge de l'affectation n'est pas implémentée, on affecte donc à x,
+objet non alloué, un objet alloué. Il y a donc incompatibilité.
+
+L'écriture 2 n'utilise pas cette surcharge mais l'initialisation directe 
+avec le constructeur Dvector(length, default_valor), donc on est sûrs que le constructeur
+est bien appliqué à l'objet x, et non pas à un autre objet.
