@@ -122,3 +122,16 @@ double & Dvector::operator()(int i){
         throw std::out_of_range("Débordement d'indice dans un Dvector");
     }
 }
+Dvector & Dvector::operator + (Dvector & v){
+	if(this->size() == v.size()){
+		Dvector res = Dvector(this->size());
+		for(int i = 0; i < this->size(); i++){
+			res(i) = (*this)(i) + v(i);
+		}
+		return res;
+	} else {
+		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
+	}
+
+
+}
