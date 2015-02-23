@@ -157,8 +157,27 @@ Dvector & Dvector::operator + (Dvector & v){
 		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
 	}
 }
+Dvector & Dvector::operator - (Dvector & v){
+	if(this->size() == v.size()){
+		Dvector * res = new Dvector(this->size());
+		for(int i = 0; i < this->size(); i++){
+			(*res)(i) = (*this)(i) - v(i);
+			//std::cout << res(i) << std::endl;
+		}
+		return *res;
+	} else {
+		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
+	}
+}
+Dvector & Dvector::operator - (){
+		Dvector * res = new Dvector(this->size());
+		for(int i = 0; i < this->size(); i++){
+			(*res)(i) = -(*this)(i);
+			//std::cout << res(i) << std::endl;
+		}
+		return *res;
+}
 Dvector & operator + (const Dvector & v1, const Dvector & v2){
 	Dvector* x = new Dvector(0);
 	return *x;	
-
 }

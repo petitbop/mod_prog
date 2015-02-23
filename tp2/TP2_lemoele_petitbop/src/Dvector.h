@@ -107,6 +107,8 @@ class Dvector
 		Dvector operator /(const double d);
 
 		Dvector & operator + (Dvector & v);
+		Dvector & operator - (Dvector & v);
+		Dvector & operator - ();
 };
 
 		Dvector & operator + (const Dvector & v1, const Dvector & v2);
