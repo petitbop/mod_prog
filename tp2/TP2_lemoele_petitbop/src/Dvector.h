@@ -76,7 +76,6 @@ class Dvector
         //! @description	Method to fill the vector with random values between 0 and 1.
         void fillRandomly();
 
-		double & operator () (int i);
 
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector + 4.2;
@@ -102,8 +101,9 @@ class Dvector
 		Dvector & operator + (Dvector & v);
 		//Dvector  operator + (const Dvector & v1, const Dvector & v2);
 
-
-
+		double & operator () (int i) const;
+		Dvector & operator + (Dvector & v);
 };
 
+		Dvector & operator + (const Dvector & v1, const Dvector & v2);
 #endif

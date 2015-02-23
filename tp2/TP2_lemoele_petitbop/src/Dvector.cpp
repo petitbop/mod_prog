@@ -115,7 +115,7 @@ void Dvector::fillRandomly()
         tab[i] = ((double)rand())/RAND_MAX;
     }
 }
-double & Dvector::operator()(int i){
+double & Dvector::operator()(int i) const {
     if(i >= 0 && i < length){
         return tab[i];
     } else {
@@ -155,4 +155,9 @@ Dvector & Dvector::operator + (Dvector & v){
 	} else {
 		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
 	}
+}
+Dvector & operator + (const Dvector & v1, const Dvector & v2){
+	Dvector x = Dvector(0);
+	return x;	
+
 }
