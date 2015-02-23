@@ -122,6 +122,29 @@ double & Dvector::operator()(int i) const {
         throw std::out_of_range("Débordement d'indice dans un Dvector");
     }
 }
+Dvector Dvector::operator +(const double d) {
+    Dvector Res = Dvector(length);
+    for (int i=0; i<length; i++) {
+        Res.tab[i] = tab[i]+d;
+    }
+    return Res; 
+}
+Dvector Dvector::operator -(const double d) {
+    Dvector Res = Dvector(*this);
+    return Res+(-d); 
+}
+Dvector Dvector::operator *(const double d) {
+    Dvector Res = Dvector(length);
+    for (int i=0; i<length; i++) {
+        Res.tab[i] = tab[i]*d;
+    }
+    return Res; 
+}
+Dvector Dvector::operator /(const double d) {
+    Dvector Res = Dvector(*this);
+    return Res*(1/d); 
+}
+
 Dvector & Dvector::operator + (Dvector & v){
 	if(this->size() == v.size()){
 		Dvector * res = new Dvector(this->size());
@@ -133,8 +156,6 @@ Dvector & Dvector::operator + (Dvector & v){
 	} else {
 		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
 	}
-
-
 }
 Dvector & operator + (const Dvector & v1, const Dvector & v2){
 	Dvector* x = new Dvector(0);
