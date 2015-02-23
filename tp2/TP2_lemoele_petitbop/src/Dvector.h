@@ -77,8 +77,33 @@ class Dvector
         void fillRandomly();
 
 		double & operator () (int i);
+
+		//! @description	Add a double to all members of a DVector.
+		//! 				Exemple : dvector + 4.2;
+		//! @param d 		The double to add.
+		Dvector operator +(const double d);
+
+		//! @description	Add a double to all members of a DVector.
+		//! 				Exemple : dvector - 4.2;
+		//! @param d 		The double to substract.
+		Dvector operator -(const double d);
+
+		//! @description	Add a double to all members of a DVector.
+		//! 				Exemple : dvector * 4.2;
+		//! @param d 		The double to multiply.
+		Dvector operator *(const double d);
+
+		//! @description	Add a double to all members of a DVector.
+		//! 				Exemple : dvector / 4.2;
+		//! @param d 		The double to divise by.
+		Dvector operator /(const double d);
+
+		
 		Dvector & operator + (Dvector & v);
 		//Dvector  operator + (const Dvector & v1, const Dvector & v2);
+
+
+
 };
 
 #endif
