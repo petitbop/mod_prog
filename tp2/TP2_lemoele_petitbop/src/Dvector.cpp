@@ -124,11 +124,12 @@ double & Dvector::operator()(int i) const {
 }
 Dvector & Dvector::operator + (Dvector & v){
 	if(this->size() == v.size()){
-		Dvector res = Dvector(this->size());
+		Dvector * res = new Dvector(this->size());
 		for(int i = 0; i < this->size(); i++){
-			res(i) = (*this)(i) + v(i);
+			(*res)(i) = (*this)(i) + v(i);
+			//std::cout << res(i) << std::endl;
 		}
-		return res;
+		return *res;
 	} else {
 		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
 	}
@@ -136,7 +137,7 @@ Dvector & Dvector::operator + (Dvector & v){
 
 }
 Dvector & operator + (const Dvector & v1, const Dvector & v2){
-	Dvector x = Dvector(0);
-	return x;	
+	Dvector* x = new Dvector(0);
+	return *x;	
 
 }
