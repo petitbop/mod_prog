@@ -104,7 +104,6 @@ class Dvector
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector / 4.2;
 		//! @param d 		The double to divise by.
-		//! @return			The result of the operation.
 		Dvector operator /(const double d);
 
 		Dvector & operator + (Dvector & v);
