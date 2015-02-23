@@ -53,9 +53,15 @@ int main (int argc, const char* argv[]) {
 	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs entre un vecteur et un réel :"<<std::endl;
 	Dvector u1 = Dvector(3, 4.2);
 	(u1+2.0).display(std::cout);
+	// (2.0+u1).display(std::cout);
 	(u1-3.0).display(std::cout);
 	(u1*3.0).display(std::cout);
 	(u1/2.0).display(std::cout);
+
+	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs entre des vecteurs :"<<std::endl;
+	Dvector u2 = Dvector(3, 3.6);
+	(u1+u2).display(std::cout);
+	// (u1-u2).display(std::cout);
 
 
 } 

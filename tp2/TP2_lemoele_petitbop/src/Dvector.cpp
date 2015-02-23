@@ -129,6 +129,10 @@ Dvector Dvector::operator +(const double d) {
     }
     return Res; 
 }
+// Dvector operator +(const Dvector & v, const double d) {
+//     Dvector Res = Dvector(v);
+//     return Res+d; 
+// }
 Dvector Dvector::operator -(const double d) {
     Dvector Res = Dvector(*this);
     return Res+(-d); 

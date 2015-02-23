@@ -8,17 +8,17 @@ SRC 	=	$(wildcard $(SRCFILE)/*.cpp)
 OBJ 	=	$(SRC:$(SRCFILE)/%.cpp=$(SRCFILE)/%.o)
 HEAD 	=	$(wildcard $(SRCFILE)/*.h)
 
-CXX 	=	g++
-CFLAGS 	=	-Wall -Wextra -g 
+CXX 		=	g++
+CXXFLAGS 	=	-Wall -Wextra -g 
 
 # Generating all executable files
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	$(CXX) -o $@ $(CFLAGS) $^
+	$(CXX) -o $@ $(CXXFLAGS) $^
 
 $(SRCFILE)/%.o: ($SRCFILE)/%.cpp ($SRCFILE)/%.h
-	$(CXX) -o $@ $(CFLAGS) -c $< 
+	$(CXX) -o $@ $(CXXFLAGS) -c $< 
 
 # Executing all executable files
 check: 

@@ -88,6 +88,7 @@ class Dvector
 		//! @param d 		The double to add.
 		//! @return			The result of the operation.
 		Dvector operator +(const double d);
+		// Dvector operator +(const Dvector & v, const double d);
 
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector - 4.2;
