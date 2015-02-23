@@ -70,38 +70,43 @@ class Dvector
 		//! @description	Accessor to a value of the vector.
 		//! @param i 		The index from which to get the value.
 		//!					(0 <= i < length)
-		//! @return double	The value at index i.
+		//! @return			The value at index i.
         double get(int i);
 
         //! @description	Method to fill the vector with random values between 0 and 1.
         void fillRandomly();
 
+		//! @description	Access to a value of the vector.
+		//! 				Exemple : dvector(2);
+		//! @param i 		The index of the value.
+		//!					(0 <= i < length)
+		//! @return			The value at index i.
+		double & operator () (int i) const;
 
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector + 4.2;
 		//! @param d 		The double to add.
+		//! @return			The result of the operation.
 		Dvector operator +(const double d);
 
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector - 4.2;
 		//! @param d 		The double to substract.
+		//! @return			The result of the operation.
 		Dvector operator -(const double d);
 
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector * 4.2;
 		//! @param d 		The double to multiply.
+		//! @return			The result of the operation.
 		Dvector operator *(const double d);
 
 		//! @description	Add a double to all members of a DVector.
 		//! 				Exemple : dvector / 4.2;
 		//! @param d 		The double to divise by.
+		//! @return			The result of the operation.
 		Dvector operator /(const double d);
 
-		
-		Dvector & operator + (Dvector & v);
-		//Dvector  operator + (const Dvector & v1, const Dvector & v2);
-
-		double & operator () (int i) const;
 		Dvector & operator + (Dvector & v);
 };
 
