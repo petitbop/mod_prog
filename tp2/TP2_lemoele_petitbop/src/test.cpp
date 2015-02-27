@@ -50,18 +50,45 @@ int main (int argc, const char* argv[]) {
 	// Dvector v8 = Dvector("tp1_test2.txt");
 	// std::cout<<"Taille : "<<v8.size()<<std::endl<<std::endl;
 
+	std::cout<<std::endl<<"===========================================================================================";
 	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs entre un vecteur et un réel :"<<std::endl;
+	std::cout<<std::endl<<"==> Vecteur u1 :"<<std::endl;
 	Dvector u1 = Dvector(3, 4.2);
+	u1.display(std::cout);
+	std::cout<<std::endl<<"==> Addition par 2 :"<<std::endl;
 	(u1+2.0).display(std::cout);
-	// (2.0+u1).display(std::cout);
+	std::cout<<std::endl<<"==> Soustraction par 3 :"<<std::endl;
 	(u1-3.0).display(std::cout);
+	std::cout<<std::endl<<"==> Multiplication par 3 :"<<std::endl;
 	(u1*3.0).display(std::cout);
+	std::cout<<std::endl<<"==> Division par 2 :"<<std::endl;
 	(u1/2.0).display(std::cout);
 
+	std::cout<<std::endl<<"===========================================================================================";
 	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs entre des vecteurs :"<<std::endl;
+	std::cout<<std::endl<<"==> Vecteur u2 :"<<std::endl;
 	Dvector u2 = Dvector(3, 3.6);
+	u2.display(std::cout);
+	std::cout<<std::endl<<"==> Addition u1 et u2 :"<<std::endl;
 	(u1+u2).display(std::cout);
-	// (u1-u2).display(std::cout);
+	std::cout<<std::endl<<"==> Soustraction u1 et u2 :"<<std::endl;
+	(u1-u2).display(std::cout);
+	std::cout<<std::endl<<"==> Moins unaire u2 :"<<std::endl;
+	(-u2).display(std::cout);
 
+	std::cout<<std::endl<<"===========================================================================================";
+	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs raccourcis (+=, etc.) entre un vecteur et un réel :"<<std::endl;
+	std::cout<<std::endl<<"==> Addition par 2 :"<<std::endl;
+	u1+=2.0;
+	u1.display(std::cout);
+	std::cout<<std::endl<<"==> Soustraction par 3 :"<<std::endl;
+	u1-=3.0;
+	u1.display(std::cout);
+	std::cout<<std::endl<<"==> Multiplication par 3 :"<<std::endl;
+	u1*=3.0;
+	u1.display(std::cout);
+	std::cout<<std::endl<<"==> Division par 2 :"<<std::endl;
+	u1/=2.0;
+	u1.display(std::cout);
 
 } 

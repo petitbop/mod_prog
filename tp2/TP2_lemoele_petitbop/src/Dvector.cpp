@@ -115,6 +115,9 @@ void Dvector::fillRandomly()
         tab[i] = ((double)rand())/RAND_MAX;
     }
 }
+
+
+// ============================= OPERATEURS INTERNES =============================
 double & Dvector::operator()(int i) const {
     if(i >= 0 && i < length){
         return tab[i];
@@ -122,17 +125,15 @@ double & Dvector::operator()(int i) const {
         throw std::out_of_range("Débordement d'indice dans un Dvector");
     }
 }
+
 Dvector Dvector::operator +(const double d) {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
         Res.tab[i] = tab[i]+d;
     }
+    // Res+=d;
     return Res; 
 }
-// Dvector operator +(const Dvector & v, const double d) {
-//     Dvector Res = Dvector(v);
-//     return Res+d; 
-// }
 Dvector Dvector::operator -(const double d) {
     Dvector Res = Dvector(*this);
     return Res+(-d); 
@@ -181,6 +182,32 @@ Dvector & Dvector::operator - (){
 		}
 		return *res;
 }
+
+
+void Dvector::operator +=(const double d) {
+    for (int i=0; i<length; i++) {
+        this->tab[i] = tab[i]+d;
+    }
+}
+void Dvector::operator -=(const double d) {
+    *this+=(-d);
+}
+void Dvector::operator *=(const double d) {
+    for (int i=0; i<length; i++) {
+        this->tab[i] = tab[i]*d;
+    }
+}
+void Dvector::operator /=(const double d) {
+    *this*=(1/d);
+}
+
+// ============================= OPERATEURS EXTERNES =============================
+// Dvector & operator +(const Dvector & v, const double d) {
+//     Dvector* Res = new Dvector(v);
+//     *Res = (*Res)+d;
+//     return *Res; 
+// }
+
 Dvector & operator + (const Dvector & v1, const Dvector & v2){
 	Dvector* x = new Dvector(0);
 	return *x;	

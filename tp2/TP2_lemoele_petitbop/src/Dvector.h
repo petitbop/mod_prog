@@ -83,26 +83,25 @@ class Dvector
 		//! @return			The value at index i.
 		double & operator () (int i) const;
 
-		//! @description	Add a double to all members of a DVector.
+		//! @description	Add a double to all members of a Dvector.
 		//! 				Exemple : dvector + 4.2;
 		//! @param d 		The double to add.
 		//! @return			The result of the operation.
 		Dvector operator +(const double d);
-		// Dvector operator +(const Dvector & v, const double d);
 
-		//! @description	Add a double to all members of a DVector.
+		//! @description	Substract a double to all members of a Dvector.
 		//! 				Exemple : dvector - 4.2;
 		//! @param d 		The double to substract.
 		//! @return			The result of the operation.
 		Dvector operator -(const double d);
 
-		//! @description	Add a double to all members of a DVector.
+		//! @description	Multiply a double to all members of a Dvector.
 		//! 				Exemple : dvector * 4.2;
 		//! @param d 		The double to multiply.
 		//! @return			The result of the operation.
 		Dvector operator *(const double d);
 
-		//! @description	Add a double to all members of a DVector.
+		//! @description	Divise all members of a Dvector by a double.
 		//! 				Exemple : dvector / 4.2;
 		//! @param d 		The double to divise by.
 		Dvector operator /(const double d);
@@ -110,7 +109,28 @@ class Dvector
 		Dvector & operator + (Dvector & v);
 		Dvector & operator - (Dvector & v);
 		Dvector & operator - ();
+
+		//! @description	Add a double to all members of the current Dvector.
+		//! 				Exemple : dvector += 4.2;
+		//! @param d 		The double to add.
+		void operator +=(const double d);
+
+		//! @description	Substract a double to all members of the current Dvector.
+		//! 				Exemple : dvector -= 4.2;
+		//! @param d 		The double to substract.
+		void operator -=(const double d);
+
+		//! @description	Multiply a double to all members of the current Dvector.
+		//! 				Exemple : dvector *= 4.2;
+		//! @param d 		The double to multiply.
+		void operator *=(const double d);
+
+		//! @description	Divise all members of the current Dvector by a double.
+		//! 				Exemple : dvector /= 4.2;
+		//! @param d 		The double to divise by.
+		void operator /=(const double d);
 };
 
+		// Dvector & operator +(const Dvector & v, const double d);
 		Dvector & operator + (const Dvector & v1, const Dvector & v2);
 #endif
