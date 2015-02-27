@@ -91,4 +91,12 @@ int main (int argc, const char* argv[]) {
 	u1/=2.0;
 	u1.display(std::cout);
 
+	std::cout<<std::endl<<"===========================================================================================";
+	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs raccourcis (+=, etc.) entre deux vecteurs :"<<std::endl;
+	std::cout<<std::endl<<"==> Addition u1 et u2 :"<<std::endl;
+	u1+=u2;
+	u1.display(std::cout);
+	std::cout<<std::endl<<"==> Soustraction u1 et u2 :"<<std::endl;
+	u1-=u2;
+	u1.display(std::cout);
 } 

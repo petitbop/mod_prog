@@ -171,7 +171,7 @@ Dvector & Dvector::operator - (Dvector & v){
 		}
 		return *res;
 	} else {
-		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
+		throw std::length_error("Tentative de soustraction de deux Dvector de tailles différentes");
 	}
 }
 Dvector & Dvector::operator - (){
@@ -199,6 +199,25 @@ void Dvector::operator *=(const double d) {
 }
 void Dvector::operator /=(const double d) {
     *this*=(1/d);
+}
+
+void Dvector::operator += (Dvector & v){
+    if(this->length == v.size()){
+        for (int i=0; i<length; i++) {
+            this->tab[i] = tab[i] + v.tab[i];
+        }
+    } else {
+        throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
+    }
+}
+void Dvector::operator -= (Dvector & v){
+    if(this->length == v.size()){
+        for (int i=0; i<length; i++) {
+            this->tab[i] = tab[i] - v.tab[i];
+        }
+    } else {
+        throw std::length_error("Tentative de soustraction de deux Dvector de tailles différentes");
+    }
 }
 
 // ============================= OPERATEURS EXTERNES =============================
