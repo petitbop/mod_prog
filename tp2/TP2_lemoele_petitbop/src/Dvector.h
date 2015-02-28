@@ -71,12 +71,6 @@ class Dvector
         //! @return int 	The length of the vector.
         int size() const;
 
-        //! @description	Accessor to a value of the vector.
-        //! @param i 		The index from which to get the value.
-        //!					(0 <= i < length)
-        //! @return			The value at index i.
-        double get(int i);
-
         //! @description	Method to fill the vector with random values between 0 and 1.
         void fillRandomly();
 
