@@ -26,7 +26,7 @@ Dvector::Dvector(int n, double val)
     std::cout << "Constructor Dvector(unsigned int length, double default_valor). \n";
     init(n, val);
 }
-Dvector::Dvector(const Dvector& v)
+Dvector::Dvector(Dvector const& v)
 {
     std::cout << "Copy constructor Dvector(const Dvector &V). \n";
     double vSize = v.length;
@@ -98,8 +98,7 @@ void Dvector::display(std::ostream& str){
         str<<tab[i]<<"\n";
     }
 }
-int Dvector::size()
-{
+int Dvector::size() const{
     return length;
 }
 double Dvector::get(int i){		// A supprimer (remplacé par opérateur())
@@ -170,8 +169,8 @@ void Dvector::operator /=(const double d) {
 
 
 
-Dvector & Dvector::operator += (Dvector & v){
-    if(length == v.size()){
+Dvector & Dvector::operator += (Dvector const& v){
+    if(length == v.length){
         for (int i=0; i<length; i++) {
             tab[i] += v.tab[i];
         }
@@ -195,11 +194,14 @@ Dvector& Dvector::operator -= (Dvector const& v){
     return *this;
 }
 
+/*
 Dvector Dvector::operator + (Dvector & v){
     Dvector b = Dvector(*this);
     b += v;
     return b;
 }
+*/
+
 Dvector Dvector::operator - (Dvector & v){
     Dvector b = Dvector(*this);
     b -= v;
@@ -213,6 +215,8 @@ Dvector Dvector::operator - (Dvector & v){
 //     return *Res; 
 // }
 
-Dvector operator + (Dvector const& v1, Dvector const& v2){
-    return Dvector(0);	
+Dvector operator+(Dvector const& a, Dvector const& b){
+    Dvector c = Dvector(a);
+    c += b;
+    return c;
 }

@@ -48,7 +48,7 @@ class Dvector
 
         //! @description 	Copy constructor.
         //! @param v 		Dvector instance from which to create a new one.
-        Dvector(const Dvector& v);
+        Dvector(Dvector const& v);
         // Dvector(Dvector& v);
 
         //! @description 	Constructor from a file.
@@ -69,7 +69,7 @@ class Dvector
 
         //! @description	Accessor to the length of the vector.
         //! @return int 	The length of the vector.
-        int size();
+        int size() const;
 
         //! @description	Accessor to a value of the vector.
         //! @param i 		The index from which to get the value.
@@ -139,7 +139,7 @@ class Dvector
         //! 				Exemple : dvector1 + dvector2;
         //! @param v 		The Dvector to add.
         //! @return			The result of the operation.
-        Dvector & operator += (Dvector & v);
+        Dvector & operator += (Dvector const& v);
 
         //! @description	Unitary minus.
         //! 				Exemple : - dvector2;
@@ -152,11 +152,13 @@ class Dvector
         //! @return			The result of the operation.
         Dvector & operator -= (Dvector const& v);
 
+        /*
         //! @description	Add a Dvector to another.
         //! 				Exemple : dvector1 + dvector2;
         //! @param v 		The Dvector to add.
         //! @return			The result of the operation.
         Dvector operator + (Dvector & v);
+        */
 
         //! @description	Substract a Dvector to another
         //! 				Exemple : dvector1 - dvector2;
@@ -169,6 +171,6 @@ class Dvector
 
 
 // Dvector & operator +(const Dvector & v, const double d);
-Dvector operator + (Dvector const& v1, Dvector const& v2);
+Dvector operator + (Dvector const& a, Dvector const& b);
 
 #endif
