@@ -16,19 +16,19 @@ void Dvector::init(int n, double val){
     }
     srand(time(NULL));
 }
-Dvector::Dvector()
-{
+
+Dvector::Dvector(){
     std::cout << "Default constructor Dvector(). \n";
     init(0);
 }
-Dvector::Dvector(int n, double val)
-{
+
+Dvector::Dvector(int n, double val) {
     std::cout << "Constructor Dvector(unsigned int length, double default_valor). \n";
     init(n, val);
 }
-Dvector::Dvector(Dvector const& v)
-{
-    std::cout << "Copy constructor Dvector(const Dvector &V). \n";
+
+Dvector::Dvector(Dvector const& v) {
+    std::cout << "Copy constructor Dvector(Dvector const& v). \n";
     double vSize = v.length;
     assert(vSize >= 0);
     if(vSize == 0){
@@ -41,23 +41,8 @@ Dvector::Dvector(Dvector const& v)
         }
     }
 }
-// Dvector::Dvector(Dvector& v)
-// {
-//     std::cout << "Constructor Dvector(std::string entry_file). \n";
-//     double vSize = v.size();
-//     assert(vSize >= 0);
-//     if(vSize == 0){
-//         init(0);
-//     }
-//     if(vSize > 0){
-//         init(vSize);
-//         for(int i = 0; i < length; i++){
-//             tab[i] = v.get(i);
-//         }
-//     }
-// }
-Dvector::Dvector(std::string fileName)
-{
+
+Dvector::Dvector(std::string fileName){
     std::cout << "Constructor Dvector(std::string entry_file). \n";
     std::ifstream data;
 
@@ -87,20 +72,24 @@ Dvector::Dvector(std::string fileName)
     }
     data.close();
 }
+
 Dvector::~Dvector(){
     std::cout << "Destructor ~Dvector(). \n";
     if(length > 0){
         delete [] tab;
     }
 }
+
 void Dvector::display(std::ostream& str){
     for(int i = 0; i < length; i++){
         str<<tab[i]<<"\n";
     }
 }
+
 int Dvector::size() const{
     return length;
 }
+
 double Dvector::get(int i){		// A supprimer (remplacé par opérateur())
     if(i >= 0 && i < length){
         return tab[i];
@@ -108,8 +97,8 @@ double Dvector::get(int i){		// A supprimer (remplacé par opérateur())
         throw std::out_of_range("Débordement d'indice dans un Dvector");
     }
 }
-void Dvector::fillRandomly()
-{
+
+void Dvector::fillRandomly() {
     for(int i = 0; i < length; i++){
         tab[i] = ((double)rand())/RAND_MAX;
     }
@@ -133,10 +122,12 @@ Dvector Dvector::operator +(const double d) {
     // Res+=d;
     return Res; 
 }
+
 Dvector Dvector::operator -(const double d) {
     Dvector Res = Dvector(*this);
     return Res+(-d); 
 }
+
 Dvector Dvector::operator *(const double d) {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
@@ -144,6 +135,7 @@ Dvector Dvector::operator *(const double d) {
     }
     return Res; 
 }
+
 Dvector Dvector::operator /(const double d) {
     Dvector Res = Dvector(*this);
     return Res*(1/d); 
@@ -155,14 +147,17 @@ void Dvector::operator +=(const double d) {
         this->tab[i] = tab[i]+d;
     }
 }
+
 void Dvector::operator -=(const double d) {
     *this+=(-d);
 }
+
 void Dvector::operator *=(const double d) {
     for (int i=0; i<length; i++) {
         this->tab[i] = tab[i]*d;
     }
 }
+
 void Dvector::operator /=(const double d) {
     *this*=(1/d);
 }
