@@ -77,34 +77,39 @@ class Dvector
 
 
 
+        //! @description	Access to a reference to a value of the vector.
+        //! 				Exemple : dvector(2);
+        //! @param i 		The index of the value.
+        //!					(0 <= i < length)
+        //! @return			The reference to the value at index i.
+        double& operator()(int i);
+
         //! @description	Access to a value of the vector.
         //! 				Exemple : dvector(2);
         //! @param i 		The index of the value.
         //!					(0 <= i < length)
         //! @return			The value at index i.
-        double& operator()(int i);
-
         double operator()(int i) const;
 
         //! @description	Add a double to all members of the current Dvector.
         //! 				Exemple : dvector += 4.2;
         //! @param d 		The double to add.
-        Dvector& operator +=(double const& d);
+        Dvector& operator+=(double const& a);
 
         //! @description	Substract a double to all members of the current Dvector.
         //! 				Exemple : dvector -= 4.2;
         //! @param d 		The double to substract.
-        void operator -=(const double d);
+        void operator-=(double const& a);
 
         //! @description	Multiply a double to all members of the current Dvector.
         //! 				Exemple : dvector *= 4.2;
         //! @param d 		The double to multiply.
-        void operator *=(const double d);
+        void operator*=(double const& a);
 
         //! @description	Divise all members of the current Dvector by a double.
         //! 				Exemple : dvector /= 4.2;
         //! @param d 		The double to divise by.
-        void operator /=(const double d);
+        void operator/=(double const& a);
 
 
 
@@ -112,13 +117,13 @@ class Dvector
         //! 				Exemple : dvector1 + dvector2;
         //! @param v 		The Dvector to add.
         //! @return			The result of the operation.
-        Dvector & operator += (Dvector const& v);
+        Dvector& operator+=(Dvector const& x);
 
         //! @description	Substract a Dvector to the current one
         //! 				Exemple : dvector1 - dvector2;
         //! @param v 		The Dvector to substract.
         //! @return			The result of the operation.
-        Dvector & operator -= (Dvector const& v);
+        Dvector& operator-=(Dvector const& x);
 
 };
 

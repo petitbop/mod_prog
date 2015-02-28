@@ -2,7 +2,7 @@
 
 void Dvector::init(int n, double val){
     if(n < 0){
-        throw std::invalid_argument("Tentative d'initialisation d'un Dvector de taille négative");
+        throw std::invalid_argument("Initialisation d'un Dvector de taille négative");
     }
     length = n;
     if(n == 0){
@@ -109,26 +109,30 @@ double Dvector::operator()(int i) const {
 
 
 
-Dvector& Dvector::operator+=(double const& d) {
+Dvector& Dvector::operator+=(double const& a) {
     for (int i=0; i<length; i++) {
-        (*this)(i) += d;
+        (*this)(i) += a;
     }
     return *this;
 }
 
-void Dvector::operator-=(const double d) {
-    *this+=(-d);
+void Dvector::operator-=(double const& a) {
+    *this+=(-a);
 }
 
-void Dvector::operator*=(const double d) {
+void Dvector::operator*=(double const& a) {
     for (int i=0; i<length; i++) {
-        (*this)(i) *= d;
+        (*this)(i) *= a;
     }
 }
 
-void Dvector::operator/=(const double d) {
+void Dvector::operator/=(double const& a) {
+    if(a == 0){
+        throw std::invalid_argument("Division d'un Dvector par zéro");
+    }
+
     for (int i=0; i<length; i++) {
-        (*this)(i) /= d;
+        (*this)(i) /= a;
     }
 }
 
@@ -165,7 +169,7 @@ Dvector& Dvector::operator+=(Dvector const& x){
             (*this)(i) += x(i);
         }
     } else {
-        throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
+        throw std::length_error("Addition de deux Dvector de tailles différentes");
     }
     return *this;
 }
