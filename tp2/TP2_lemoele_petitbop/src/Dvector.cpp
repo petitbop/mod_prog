@@ -114,7 +114,7 @@ double & Dvector::operator()(int i) const {
     }
 }
 
-Dvector Dvector::operator +(const double d) {
+Dvector Dvector::operator+(const double d) {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
         Res.tab[i] = tab[i]+d;
@@ -123,12 +123,12 @@ Dvector Dvector::operator +(const double d) {
     return Res; 
 }
 
-Dvector Dvector::operator -(const double d) {
+Dvector Dvector::operator-(const double d) {
     Dvector Res = Dvector(*this);
     return Res+(-d); 
 }
 
-Dvector Dvector::operator *(const double d) {
+Dvector Dvector::operator*(const double d) {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
         Res.tab[i] = tab[i]*d;
@@ -136,35 +136,35 @@ Dvector Dvector::operator *(const double d) {
     return Res; 
 }
 
-Dvector Dvector::operator /(const double d) {
+Dvector Dvector::operator/(const double d) {
     Dvector Res = Dvector(*this);
     return Res*(1/d); 
 }
 
 
-void Dvector::operator +=(const double d) {
+void Dvector::operator+=(const double d) {
     for (int i=0; i<length; i++) {
         this->tab[i] = tab[i]+d;
     }
 }
 
-void Dvector::operator -=(const double d) {
+void Dvector::operator-=(const double d) {
     *this+=(-d);
 }
 
-void Dvector::operator *=(const double d) {
+void Dvector::operator*=(const double d) {
     for (int i=0; i<length; i++) {
         this->tab[i] = tab[i]*d;
     }
 }
 
-void Dvector::operator /=(const double d) {
+void Dvector::operator/=(const double d) {
     *this*=(1/d);
 }
 
 
 
-Dvector & Dvector::operator += (Dvector const& v){
+Dvector & Dvector::operator+=(Dvector const& v){
     if(length == v.length){
         for (int i=0; i<length; i++) {
             tab[i] += v.tab[i];
@@ -175,7 +175,7 @@ Dvector & Dvector::operator += (Dvector const& v){
     return *this;
 }
 
-Dvector Dvector::operator - () const{
+Dvector Dvector::operator-() const{
     Dvector res = Dvector(length);
     for(int i = 0; i < length; i++){
         res(i) = -tab[i];
@@ -183,21 +183,13 @@ Dvector Dvector::operator - () const{
     return res;
 }
 
-Dvector& Dvector::operator -= (Dvector const& v){
+Dvector& Dvector::operator-=(Dvector const& v){
     Dvector v1 = Dvector(-v);
     (*this) += v1;
     return *this;
 }
 
-/*
-Dvector Dvector::operator + (Dvector & v){
-    Dvector b = Dvector(*this);
-    b += v;
-    return b;
-}
-*/
-
-Dvector Dvector::operator - (Dvector & v){
+Dvector Dvector::operator-(Dvector & v){
     Dvector b = Dvector(*this);
     b -= v;
     return b;
