@@ -58,10 +58,14 @@ class Dvector
         //! @descritpion	Destructor
 		~Dvector();
 
+
+
 		//! @description	Method to display the different coordinates of the vector.
 		//! @param str 		Output in which to display the values 
 		//!					(can be std::cout, or a file, etc.)
 		void display(std::ostream& str);
+
+
 
 		//! @description	Accessor to the length of the vector.
 		//! @return int 	The length of the vector.
@@ -75,6 +79,9 @@ class Dvector
 
         //! @description	Method to fill the vector with random values between 0 and 1.
         void fillRandomly();
+
+
+
 
 		//! @description	Access to a value of the vector.
 		//! 				Exemple : dvector(2);
@@ -106,23 +113,6 @@ class Dvector
 		//! @param d 		The double to divise by.
 		Dvector operator /(const double d);
 
-		//! @description	Add a Dvector to another.
-		//! 				Exemple : dvector1 + dvector2;
-		//! @param v 		The Dvector to add.
-		//! @return			The result of the operation.
-		Dvector operator + (Dvector & v);
-
-		//! @description	Substract a Dvector to another
-		//! 				Exemple : dvector1 - dvector2;
-		//! @param v 		The Dvector to substract.
-		//! @return			The result of the operation.
-		Dvector operator - (Dvector & v);
-
-		//! @description	Unitary minus.
-		//! 				Exemple : - dvector2;
-		//! @return			The result of the operation.
-		Dvector operator - () const;
-
 		//! @description	Add a double to all members of the current Dvector.
 		//! 				Exemple : dvector += 4.2;
 		//! @param d 		The double to add.
@@ -143,18 +133,40 @@ class Dvector
 		//! @param d 		The double to divise by.
 		void operator /=(const double d);
 
+
+
 		//! @description	Add a Dvector to the current one.
 		//! 				Exemple : dvector1 + dvector2;
 		//! @param v 		The Dvector to add.
 		//! @return			The result of the operation.
 		Dvector & operator += (Dvector & v);
 
+		//! @description	Unitary minus.
+		//! 				Exemple : - dvector2;
+		//! @return			The result of the operation.
+		Dvector operator - () const;
+
 		//! @description	Substract a Dvector to the current one
 		//! 				Exemple : dvector1 - dvector2;
 		//! @param v 		The Dvector to substract.
 		//! @return			The result of the operation.
 		Dvector & operator -= (Dvector const& v);
+
+		//! @description	Add a Dvector to another.
+		//! 				Exemple : dvector1 + dvector2;
+		//! @param v 		The Dvector to add.
+		//! @return			The result of the operation.
+		Dvector operator + (Dvector & v);
+
+		//! @description	Substract a Dvector to another
+		//! 				Exemple : dvector1 - dvector2;
+		//! @param v 		The Dvector to substract.
+		//! @return			The result of the operation.
+		Dvector operator - (Dvector & v);
+
 };
+
+
 
 		// Dvector & operator +(const Dvector & v, const double d);
 		Dvector & operator + (const Dvector & v1, const Dvector & v2);
