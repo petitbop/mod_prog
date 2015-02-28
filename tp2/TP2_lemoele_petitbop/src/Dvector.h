@@ -135,11 +135,6 @@ class Dvector
         //! @return			The result of the operation.
         Dvector & operator += (Dvector const& v);
 
-        //! @description	Unitary minus.
-        //! 				Exemple : - dvector2;
-        //! @return			The result of the operation.
-        Dvector operator - () const;
-
         //! @description	Substract a Dvector to the current one
         //! 				Exemple : dvector1 - dvector2;
         //! @param v 		The Dvector to substract.
@@ -154,17 +149,22 @@ class Dvector
         Dvector operator + (Dvector & v);
         */
 
-        //! @description	Substract a Dvector to another
-        //! 				Exemple : dvector1 - dvector2;
-        //! @param v 		The Dvector to substract.
-        //! @return			The result of the operation.
-        Dvector operator - (Dvector & v);
-
 };
 
 
 
 // Dvector & operator +(const Dvector & v, const double d);
 Dvector operator + (Dvector const& a, Dvector const& b);
+
+//! @description	Unitary minus.
+//! 				Exemple : - dvector2;
+//! @return			The result of the operation.
+Dvector operator-(Dvector const& a);
+
+//! @description	Substract a Dvector to another
+//! 				Exemple : dvector1 - dvector2;
+//! @param v 		The Dvector to substract.
+//! @return			The result of the operation.
+Dvector operator-(Dvector const& a, Dvector const& b);
 
 #endif

@@ -106,6 +106,8 @@ double & Dvector::operator()(int i) const {
     }
 }
 
+
+
 Dvector Dvector::operator+(const double d) {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
@@ -167,24 +169,9 @@ Dvector & Dvector::operator+=(Dvector const& v){
     return *this;
 }
 
-Dvector Dvector::operator-() const{
-    Dvector res = Dvector(length);
-    for(int i = 0; i < length; i++){
-        res(i) = -tab[i];
-    }
-    return res;
-}
-
 Dvector& Dvector::operator-=(Dvector const& v){
-    Dvector v1 = Dvector(-v);
-    (*this) += v1;
+    (*this) += -v;
     return *this;
-}
-
-Dvector Dvector::operator-(Dvector & v){
-    Dvector b = Dvector(*this);
-    b -= v;
-    return b;
 }
 
 // ============================= OPERATEURS EXTERNES =============================
@@ -197,5 +184,19 @@ Dvector Dvector::operator-(Dvector & v){
 Dvector operator+(Dvector const& a, Dvector const& b){
     Dvector c = Dvector(a);
     c += b;
+    return c;
+}
+
+Dvector operator-(Dvector const& a){
+    Dvector b = Dvector(a.size());
+    for(int i = 0; i < b.size(); i++){
+        b(i) = -a(i);
+    }
+    return b;
+}
+
+Dvector operator-(Dvector const& a, Dvector const& b){
+    Dvector c = Dvector(a);
+    c -= b;
     return c;
 }
