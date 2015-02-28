@@ -104,23 +104,6 @@ class Dvector
         //! @param d 		The double to divise by.
         void operator /=(const double d);
 
-        //! @description	Substract a double to all members of a Dvector.
-        //! 				Exemple : dvector - 4.2;
-        //! @param d 		The double to substract.
-        //! @return			The result of the operation.
-        Dvector operator -(const double d);
-
-        //! @description	Multiply a double to all members of a Dvector.
-        //! 				Exemple : dvector * 4.2;
-        //! @param d 		The double to multiply.
-        //! @return			The result of the operation.
-        Dvector operator *(const double d);
-
-        //! @description	Divise all members of a Dvector by a double.
-        //! 				Exemple : dvector / 4.2;
-        //! @param d 		The double to divise by.
-        Dvector operator /(const double d);
-
 
 
         //! @description	Add a Dvector to the current one.
@@ -144,6 +127,23 @@ class Dvector
 //! @param d 		The double to add.
 //! @return			The result of the operation.
 Dvector operator+(Dvector const& x, double const& a);
+
+//! @description	Substract a double to all members of a Dvector.
+//! 				Exemple : dvector - 4.2;
+//! @param d 		The double to substract.
+//! @return			The result of the operation.
+Dvector operator-(Dvector const& x, double const& a);
+
+//! @description	Multiply a double to all members of a Dvector.
+//! 				Exemple : dvector * 4.2;
+//! @param d 		The double to multiply.
+//! @return			The result of the operation.
+Dvector operator*(Dvector const& x, double const& a);
+
+//! @description	Divise all members of a Dvector by a double.
+//! 				Exemple : dvector / 4.2;
+//! @param d 		The double to divise by.
+Dvector operator/(Dvector const& x, double const& a);
 
 //! @description	Unitary minus.
 //! 				Exemple : - dvector2;

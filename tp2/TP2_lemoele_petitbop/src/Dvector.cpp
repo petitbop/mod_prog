@@ -133,26 +133,26 @@ void Dvector::operator/=(const double d) {
 
 Dvector operator+(Dvector const& x, double const& a) {
     Dvector y = Dvector(x);
-    y+=a;
+    y += a;
     return y; 
 }
 
-Dvector Dvector::operator-(const double d) {
-    Dvector Res = Dvector(*this);
-    return Res+(-d); 
+Dvector operator-(Dvector const& x, double const& a) {
+    Dvector y = Dvector(x);
+    y += -a;
+    return y; 
 }
 
-Dvector Dvector::operator*(const double d) {
-    Dvector Res = Dvector(length);
-    for (int i=0; i<length; i++) {
-        Res.tab[i] = tab[i]*d;
-    }
-    return Res; 
+Dvector operator*(Dvector const& x, double const& a) {
+    Dvector y = Dvector(x);
+    y *= a;
+    return y; 
 }
 
-Dvector Dvector::operator/(const double d) {
-    Dvector Res = Dvector(*this);
-    return Res*(1/d); 
+Dvector operator/(Dvector const& x, double const& a) {
+    Dvector y = Dvector(x);
+    y /= a;
+    return y; 
 }
 
 
@@ -169,24 +169,17 @@ Dvector & Dvector::operator+=(Dvector const& v){
     return *this;
 }
 
-Dvector& Dvector::operator-=(Dvector const& v){
-    (*this) += -v;
-    return *this;
-}
-
-// ============================= OPERATEURS EXTERNES =============================
-// Dvector & operator +(const Dvector & v, const double d) {
-//     Dvector* Res = new Dvector(v);
-//     *Res = (*Res)+d;
-//     return *Res; 
-// }
-
 Dvector operator-(Dvector const& x){
     Dvector y = Dvector(x.size());
     for(int i = 0; i < y.size(); i++){
         y(i) = -x(i);
     }
     return y;
+}
+
+Dvector& Dvector::operator-=(Dvector const& v){
+    (*this) += -v;
+    return *this;
 }
 
 Dvector operator+(Dvector const& x, Dvector const& y){
