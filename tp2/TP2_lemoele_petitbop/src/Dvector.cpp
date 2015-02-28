@@ -27,18 +27,11 @@ Dvector::Dvector(int n, double val) {
     init(n, val);
 }
 
-Dvector::Dvector(Dvector const& v) {
-    std::cout << "Copy constructor Dvector(Dvector const& v). \n";
-    double vSize = v.length;
-    assert(vSize >= 0);
-    if(vSize == 0){
-        init(0);
-    }
-    if(vSize > 0){
-        init(vSize);
-        for(int i = 0; i < length; i++){
-            tab[i] = v.tab[i];
-        }
+Dvector::Dvector(Dvector const& x) {
+    std::cout << "Copy constructor Dvector(Dvector const& x). \n";
+    init(x.length);
+    for(int i = 0; i < length; i++){
+        (*this)(i) = x(i);
     }
 }
 
@@ -49,9 +42,9 @@ Dvector::Dvector(std::string fileName){
     data.open(fileName.c_str());
     int nbElem;
     if(data){
-        double x;
+        double a;
         nbElem = 0;
-        while(data >> x){
+        while(data >> a){
             nbElem++;
         }
     } else {
@@ -158,10 +151,10 @@ Dvector operator/(Dvector const& x, double const& a) {
 
 
 
-Dvector & Dvector::operator+=(Dvector const& v){
-    if(length == v.length){
+Dvector& Dvector::operator+=(Dvector const& x){
+    if(length == x.length){
         for (int i=0; i<length; i++) {
-            tab[i] += v.tab[i];
+            (*this)(i) += x(i);
         }
     } else {
         throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");

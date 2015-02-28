@@ -145,6 +145,8 @@ Dvector operator*(Dvector const& x, double const& a);
 //! @param d 		The double to divise by.
 Dvector operator/(Dvector const& x, double const& a);
 
+
+
 //! @description	Unitary minus.
 //! 				Exemple : - dvector2;
 //! @return			The result of the operation.
