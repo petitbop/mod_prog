@@ -150,39 +150,6 @@ Dvector Dvector::operator /(const double d) {
     return Res*(1/d); 
 }
 
-Dvector & Dvector::operator + (Dvector & v){
-	if(this->size() == v.size()){
-		Dvector * res = new Dvector(this->size());
-		for(int i = 0; i < this->size(); i++){
-			(*res)(i) = (*this)(i) + v(i);
-			//std::cout << res(i) << std::endl;
-		}
-		return *res;
-	} else {
-		throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
-	}
-}
-Dvector & Dvector::operator - (Dvector & v){
-	if(this->size() == v.size()){
-		Dvector * res = new Dvector(this->size());
-		for(int i = 0; i < this->size(); i++){
-			(*res)(i) = (*this)(i) - v(i);
-			//std::cout << res(i) << std::endl;
-		}
-		return *res;
-	} else {
-		throw std::length_error("Tentative de soustraction de deux Dvector de tailles différentes");
-	}
-}
-Dvector & Dvector::operator - (){
-		Dvector * res = new Dvector(this->size());
-		for(int i = 0; i < this->size(); i++){
-			(*res)(i) = -(*this)(i);
-			//std::cout << res(i) << std::endl;
-		}
-		return *res;
-}
-
 
 void Dvector::operator +=(const double d) {
     for (int i=0; i<length; i++) {
@@ -201,23 +168,42 @@ void Dvector::operator /=(const double d) {
     *this*=(1/d);
 }
 
-void Dvector::operator += (Dvector & v){
-    if(this->length == v.size()){
+
+
+Dvector & Dvector::operator += (Dvector & v){
+    if(length == v.size()){
         for (int i=0; i<length; i++) {
-            this->tab[i] = tab[i] + v.tab[i];
+            tab[i] += v.tab[i];
         }
     } else {
         throw std::length_error("Tentative d'addition de deux Dvector de tailles différentes");
     }
+    return *this;
 }
-void Dvector::operator -= (Dvector & v){
-    if(this->length == v.size()){
-        for (int i=0; i<length; i++) {
-            this->tab[i] = tab[i] - v.tab[i];
-        }
-    } else {
-        throw std::length_error("Tentative de soustraction de deux Dvector de tailles différentes");
-    }
+
+Dvector Dvector::operator - () const{
+		Dvector res = Dvector(length);
+		for(int i = 0; i < length; i++){
+			res(i) = -tab[i];
+		}
+		return res;
+}
+
+Dvector& Dvector::operator -= (Dvector const& v){
+    Dvector v1 = Dvector(-v);
+    (*this) += v1;
+    return *this;
+}
+
+Dvector Dvector::operator + (Dvector & v){
+    Dvector b = Dvector(*this);
+    b += v;
+    return b;
+}
+Dvector Dvector::operator - (Dvector & v){
+    Dvector b = Dvector(*this);
+    b -= v;
+    return b;
 }
 
 // ============================= OPERATEURS EXTERNES =============================
