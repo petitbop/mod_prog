@@ -73,7 +73,7 @@ Dvector::~Dvector(){
     }
 }
 
-void Dvector::display(std::ostream& str){
+void Dvector::display(std::ostream& str) const{
     for(int i = 0; i < length; i++){
         str<<tab[i]<<"\n";
     }
@@ -91,7 +91,15 @@ void Dvector::fillRandomly() {
 
 
 // ============================= OPERATEURS INTERNES =============================
-double & Dvector::operator()(int i) const {
+double& Dvector::operator()(int i) {
+    if(i >= 0 && i < length){
+        return tab[i];
+    } else {
+        throw std::out_of_range("Débordement d'indice dans un Dvector");
+    }
+}
+
+double Dvector::operator()(int i) const {
     if(i >= 0 && i < length){
         return tab[i];
     } else {

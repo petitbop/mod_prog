@@ -63,7 +63,7 @@ class Dvector
         //! @description	Method to display the different coordinates of the vector.
         //! @param str 		Output in which to display the values 
         //!					(can be std::cout, or a file, etc.)
-        void display(std::ostream& str);
+        void display(std::ostream& str) const;
 
 
 
@@ -82,7 +82,9 @@ class Dvector
         //! @param i 		The index of the value.
         //!					(0 <= i < length)
         //! @return			The value at index i.
-        double & operator () (int i) const;
+        double& operator()(int i);
+
+        double operator()(int i) const;
 
         //! @description	Add a double to all members of the current Dvector.
         //! 				Exemple : dvector += 4.2;
