@@ -6,7 +6,7 @@ void Dvector::init(int n, double val){
     }
     length = n;
     if(n == 0){
-       tab = NULL; 
+        tab = NULL; 
     }
     if(n > 0){
         tab = new double[length];
@@ -60,7 +60,7 @@ Dvector::Dvector(std::string fileName)
 {
     std::cout << "Constructor Dvector(std::string entry_file). \n";
     std::ifstream data;
-    
+
     data.open(fileName.c_str());
     int nbElem;
     if(data){
@@ -94,9 +94,9 @@ Dvector::~Dvector(){
     }
 }
 void Dvector::display(std::ostream& str){
-			for(int i = 0; i < length; i++){
-				str<<tab[i]<<"\n";
-			}
+    for(int i = 0; i < length; i++){
+        str<<tab[i]<<"\n";
+    }
 }
 int Dvector::size()
 {
@@ -182,11 +182,11 @@ Dvector & Dvector::operator += (Dvector & v){
 }
 
 Dvector Dvector::operator - () const{
-		Dvector res = Dvector(length);
-		for(int i = 0; i < length; i++){
-			res(i) = -tab[i];
-		}
-		return res;
+    Dvector res = Dvector(length);
+    for(int i = 0; i < length; i++){
+        res(i) = -tab[i];
+    }
+    return res;
 }
 
 Dvector& Dvector::operator -= (Dvector const& v){
@@ -213,7 +213,6 @@ Dvector Dvector::operator - (Dvector & v){
 //     return *Res; 
 // }
 
-Dvector & operator + (const Dvector & v1, const Dvector & v2){
-	Dvector* x = new Dvector(0);
-	return *x;	
+Dvector operator + (Dvector const& v1, Dvector const& v2){
+    return Dvector(0);	
 }
