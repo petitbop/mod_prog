@@ -108,13 +108,33 @@ double & Dvector::operator()(int i) const {
 
 
 
-Dvector Dvector::operator+(const double d) {
-    Dvector Res = Dvector(length);
+Dvector& Dvector::operator+=(double const& d) {
     for (int i=0; i<length; i++) {
-        Res.tab[i] = tab[i]+d;
+        (*this)(i) += d;
     }
-    // Res+=d;
-    return Res; 
+    return *this;
+}
+
+void Dvector::operator-=(const double d) {
+    *this+=(-d);
+}
+
+void Dvector::operator*=(const double d) {
+    for (int i=0; i<length; i++) {
+        (*this)(i) *= d;
+    }
+}
+
+void Dvector::operator/=(const double d) {
+    for (int i=0; i<length; i++) {
+        (*this)(i) /= d;
+    }
+}
+
+Dvector operator+(Dvector const& x, double const& a) {
+    Dvector y = Dvector(x);
+    y+=a;
+    return y; 
 }
 
 Dvector Dvector::operator-(const double d) {
@@ -135,26 +155,6 @@ Dvector Dvector::operator/(const double d) {
     return Res*(1/d); 
 }
 
-
-void Dvector::operator+=(const double d) {
-    for (int i=0; i<length; i++) {
-        this->tab[i] = tab[i]+d;
-    }
-}
-
-void Dvector::operator-=(const double d) {
-    *this+=(-d);
-}
-
-void Dvector::operator*=(const double d) {
-    for (int i=0; i<length; i++) {
-        this->tab[i] = tab[i]*d;
-    }
-}
-
-void Dvector::operator/=(const double d) {
-    *this*=(1/d);
-}
 
 
 
@@ -181,22 +181,22 @@ Dvector& Dvector::operator-=(Dvector const& v){
 //     return *Res; 
 // }
 
-Dvector operator+(Dvector const& a, Dvector const& b){
-    Dvector c = Dvector(a);
-    c += b;
-    return c;
-}
-
-Dvector operator-(Dvector const& a){
-    Dvector b = Dvector(a.size());
-    for(int i = 0; i < b.size(); i++){
-        b(i) = -a(i);
+Dvector operator-(Dvector const& x){
+    Dvector y = Dvector(x.size());
+    for(int i = 0; i < y.size(); i++){
+        y(i) = -x(i);
     }
-    return b;
+    return y;
 }
 
-Dvector operator-(Dvector const& a, Dvector const& b){
-    Dvector c = Dvector(a);
-    c -= b;
-    return c;
+Dvector operator+(Dvector const& x, Dvector const& y){
+    Dvector z = Dvector(x);
+    z += y;
+    return z;
+}
+
+Dvector operator-(Dvector const& x, Dvector const& y){
+    Dvector z = Dvector(x);
+    z -= y;
+    return z;
 }

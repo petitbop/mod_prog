@@ -84,11 +84,25 @@ class Dvector
         //! @return			The value at index i.
         double & operator () (int i) const;
 
-        //! @description	Add a double to all members of a Dvector.
-        //! 				Exemple : dvector + 4.2;
+        //! @description	Add a double to all members of the current Dvector.
+        //! 				Exemple : dvector += 4.2;
         //! @param d 		The double to add.
-        //! @return			The result of the operation.
-        Dvector operator +(const double d);
+        Dvector& operator +=(double const& d);
+
+        //! @description	Substract a double to all members of the current Dvector.
+        //! 				Exemple : dvector -= 4.2;
+        //! @param d 		The double to substract.
+        void operator -=(const double d);
+
+        //! @description	Multiply a double to all members of the current Dvector.
+        //! 				Exemple : dvector *= 4.2;
+        //! @param d 		The double to multiply.
+        void operator *=(const double d);
+
+        //! @description	Divise all members of the current Dvector by a double.
+        //! 				Exemple : dvector /= 4.2;
+        //! @param d 		The double to divise by.
+        void operator /=(const double d);
 
         //! @description	Substract a double to all members of a Dvector.
         //! 				Exemple : dvector - 4.2;
@@ -107,26 +121,6 @@ class Dvector
         //! @param d 		The double to divise by.
         Dvector operator /(const double d);
 
-        //! @description	Add a double to all members of the current Dvector.
-        //! 				Exemple : dvector += 4.2;
-        //! @param d 		The double to add.
-        void operator +=(const double d);
-
-        //! @description	Substract a double to all members of the current Dvector.
-        //! 				Exemple : dvector -= 4.2;
-        //! @param d 		The double to substract.
-        void operator -=(const double d);
-
-        //! @description	Multiply a double to all members of the current Dvector.
-        //! 				Exemple : dvector *= 4.2;
-        //! @param d 		The double to multiply.
-        void operator *=(const double d);
-
-        //! @description	Divise all members of the current Dvector by a double.
-        //! 				Exemple : dvector /= 4.2;
-        //! @param d 		The double to divise by.
-        void operator /=(const double d);
-
 
 
         //! @description	Add a Dvector to the current one.
@@ -141,30 +135,31 @@ class Dvector
         //! @return			The result of the operation.
         Dvector & operator -= (Dvector const& v);
 
-        /*
-        //! @description	Add a Dvector to another.
-        //! 				Exemple : dvector1 + dvector2;
-        //! @param v 		The Dvector to add.
-        //! @return			The result of the operation.
-        Dvector operator + (Dvector & v);
-        */
-
 };
 
 
 
-// Dvector & operator +(const Dvector & v, const double d);
-Dvector operator + (Dvector const& a, Dvector const& b);
+//! @description	Add a double to all members of a Dvector.
+//! 				Exemple : dvector + 4.2;
+//! @param d 		The double to add.
+//! @return			The result of the operation.
+Dvector operator+(Dvector const& x, double const& a);
 
 //! @description	Unitary minus.
 //! 				Exemple : - dvector2;
 //! @return			The result of the operation.
-Dvector operator-(Dvector const& a);
+Dvector operator-(Dvector const& x);
+
+//! @description	Add a Dvector to another.
+//! 				Exemple : dvector1 + dvector2;
+//! @param v 		The Dvector to add.
+//! @return			The result of the operation.
+Dvector operator+(Dvector const& x, Dvector const& y);
 
 //! @description	Substract a Dvector to another
 //! 				Exemple : dvector1 - dvector2;
 //! @param v 		The Dvector to substract.
 //! @return			The result of the operation.
-Dvector operator-(Dvector const& a, Dvector const& b);
+Dvector operator-(Dvector const& x, Dvector const& y);
 
 #endif
