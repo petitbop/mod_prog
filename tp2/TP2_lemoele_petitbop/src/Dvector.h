@@ -99,17 +99,17 @@ class Dvector
         //! @description	Substract a double to all members of the current Dvector.
         //! 				Exemple : dvector -= 4.2;
         //! @param d 		The double to substract.
-        void operator-=(double const& a);
+        Dvector& operator-=(double const& a);
 
         //! @description	Multiply a double to all members of the current Dvector.
         //! 				Exemple : dvector *= 4.2;
         //! @param d 		The double to multiply.
-        void operator*=(double const& a);
+        Dvector& operator*=(double const& a);
 
         //! @description	Divise all members of the current Dvector by a double.
         //! 				Exemple : dvector /= 4.2;
         //! @param d 		The double to divise by.
-        void operator/=(double const& a);
+        Dvector& operator/=(double const& a);
 
 
 

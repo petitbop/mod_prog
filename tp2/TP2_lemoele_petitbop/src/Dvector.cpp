@@ -116,17 +116,19 @@ Dvector& Dvector::operator+=(double const& a) {
     return *this;
 }
 
-void Dvector::operator-=(double const& a) {
-    *this+=(-a);
+Dvector& Dvector::operator-=(double const& a) {
+    *this += (-a);
+    return *this;
 }
 
-void Dvector::operator*=(double const& a) {
+Dvector& Dvector::operator*=(double const& a) {
     for (int i=0; i<length; i++) {
         (*this)(i) *= a;
     }
+    return *this;
 }
 
-void Dvector::operator/=(double const& a) {
+Dvector& Dvector::operator/=(double const& a) {
     if(a == 0){
         throw std::invalid_argument("Division d'un Dvector par zéro");
     }
@@ -134,6 +136,7 @@ void Dvector::operator/=(double const& a) {
     for (int i=0; i<length; i++) {
         (*this)(i) /= a;
     }
+    return *this;
 }
 
 Dvector operator+(Dvector const& x, double const& a) {
