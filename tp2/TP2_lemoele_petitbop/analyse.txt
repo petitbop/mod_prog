@@ -33,4 +33,6 @@ que le passage de pointeur ou ici de référence.
 	- 		/ interne/externe
 - On peut utiliser l'opérateur == pour implémenter les opérateurs suivants :
 	-		!=
-Les autres opérateurs : >> << = et () en lecture/écriture ne sont pas factorisables.
+- On peut utiliser la méthode display() pour implémenter les opérateurs suivants :
+	-		<<
+Les autres opérateurs : >> = et () en lecture/écriture ne sont pas factorisables.
