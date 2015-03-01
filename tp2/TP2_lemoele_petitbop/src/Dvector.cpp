@@ -187,6 +187,7 @@ Dvector& Dvector::egal(Dvector const& x){
     for(int i = 0; i < length; i++){
         (*this)(i) = x(i);
     }
+    return *this;
 }
 
 
