@@ -108,6 +108,15 @@ int main (int argc, const char* argv[]) {
 
 	std::cout<<std::endl<<"===========================================================================================";
 	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs de flux :"<<std::endl;
-	std::cout<<u1;
+	std::cout<<std::endl<<"==> Redirection sortie :"<<std::endl;
+	std::cout<<u1<<u2;
+
+	std::cout<<std::endl<<"===========================================================================================";
+	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs booléens :"<<std::endl;
+	std::cout<<std::endl<<"==> Egalité u1 et u2 :"<<std::endl;
+	if (u1 == u2) std::cout<<"u1 = u2"<<std::endl; else std::cout<<"u1 != u2"<<std::endl;
+	std::cout<<std::endl<<"==> Egalité u1 et u3 (copie de u1) :"<<std::endl;
+	Dvector u3 = Dvector(u1);
+	if (u1 == u3) std::cout<<"u1 = u3"<<std::endl; else std::cout<<"u1 != u3"<<std::endl;
 
 } 

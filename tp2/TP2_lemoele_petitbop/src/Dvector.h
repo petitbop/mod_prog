@@ -176,14 +176,14 @@ Dvector operator-(Dvector const& x);
 //! @description	Add a Dvector to another.
 //! 				Exemple : dvector1 + dvector2;
 //! @param x 		The first Dvector operand.
-//! @param x 		The second Dvector operand.
+//! @param y 		The second Dvector operand.
 //! @return			The Dvector resulting of the operation.
 Dvector operator+(Dvector const& x, Dvector const& y);
 
 //! @description	Substract a Dvector to another
 //! 				Exemple : dvector1 - dvector2;
 //! @param x 		The first Dvector operand.
-//! @param x 		The second Dvector operand.
+//! @param y 		The second Dvector operand.
 //! @return			The Dvector resulting of the operation.
 Dvector operator-(Dvector const& x, Dvector const& y);
 
@@ -201,5 +201,15 @@ std::ostream& operator<<(std::ostream& flux, Dvector const& x);
 //! @param flux		The flux from which to read the Dvector.
 //! @return			The new flux.
 std::istream& operator>>(std::istream& flux, Dvector& x);
+
+//=============================================================================
+//							COMPARISON OPERATORS
+//=============================================================================
+//! @description	Determine if 2 Dvectors are equals.
+//! @param x 		The first Dvector operand.
+//! @param y 		The second Dvector operand.
+//! @return			TRUE if each member at index i in Dvector x is equal to
+//!					each member at index i in Dvector y, FALSE otherwise.
+bool operator==(Dvector const& x, Dvector const& y);
 
 #endif

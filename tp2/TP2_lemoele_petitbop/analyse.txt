@@ -1,28 +1,36 @@
 analyse.txt
 
-TP1 : Introduction aux outils
+TP 2 : OPERATEURS
 
 
-Question 1 :
+================================= Question 2 : ================================= 
 
 Différence entre les écritures :
-- Ecriture 1 :	Dvector x; x = Dvector (3, 1.); 
-- Ecriture 2 :	Dvector x = Dvector (3, 1.);
+- 	Dvector operator+ (Dvector a, Dvector b)
+	Ecriture avec des objets modifiables en paramètres.
+- 	Dvector operator+ (const Dvector &a, const Dvector &b)
+	Ecriture avec passage de références const (non modifiables) en paramètres.
+
+La deuxième écriture impose que les objets en paramètres ne doivent pas être modifiés.
+Il doivent donc être recopiés afin d'être utilisables. 
+Cela ajoute en sécurité sur les objets manipulés : lorsqu'on additionne deux objets pour en obtenir un troisième,
+il ne doit pas y avoir d'effets de bord modifiant les deux premiers objets.
+
+Il est préférable d'utiliser cette écriture pour les raisons précédentes ainsi que pour éviter
+de passer des objets en paramètre, comme dans l'écriture 1, car le passage d'objet est moins performant 
+que le passage de pointeur ou ici de référence.
 
 
-L'écriture 1 utilise la surcharge d'opérateur, c'est-à-dire la redéfinition des opérateurs de base
-(opérateurs arithmétiques, de comparaison, d'affectation, etc.).
-Ici, c'est l'affectation qui est surchargée.
-L'écriture 1 fait appel à une méthode :
-		Dvector operator= (Dvector &V);
-que le développeur aura définie et implémentée dans sa classe Dvector.
-Ainsi, quand on utilise l'écriture 1, on fait plusieurs choses :
-	- On définit un objet x,
-	- On définit un objet Dvector(3, 1.),
-	- On affecte le 2e objet à x.
-Dans notre cas, où la surcharge de l'affectation n'est pas implémentée, on affecte donc à x,
-objet non alloué, un objet alloué. Il y a donc incompatibilité.
+================================= Question 4 : ================================= 
 
-L'écriture 2 n'utilise pas cette surcharge mais l'initialisation directe 
-avec le constructeur Dvector(length, default_valor), donc on est sûrs que le constructeur
-est bien appliqué à l'objet x, et non pas à un autre objet.
+- On peut utiliser l'opérateur += pour implémenter les opérateurs suivants :
+	- 		-=
+	- 		+ interne/externe
+	- 		- interne/externe
+- On peut utiliser l'opérateur *= pour implémenter les opérateurs suivants :
+	- 		/=
+	- 		* interne/externe
+	- 		/ interne/externe
+- On peut utiliser l'opérateur == pour implémenter les opérateurs suivants :
+	-		!=
+Les autres opérateurs : >> << = et () en lecture/écriture ne sont pas factorisables.

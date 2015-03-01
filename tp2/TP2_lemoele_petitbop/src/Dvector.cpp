@@ -224,3 +224,13 @@ std::istream& operator>>(std::istream& flux, Dvector& x){
     }
     return flux;
 }
+
+//=============================================================================
+//                          COMPARISON OPERATORS
+//=============================================================================
+bool operator==(Dvector const& x, Dvector const& y) {
+    if (x.size() != y.size()) return false;
+    for (int i = 0; i < x.size(); ++i)
+        if (x(i) != y(i)) return false;
+    return true;
+}
