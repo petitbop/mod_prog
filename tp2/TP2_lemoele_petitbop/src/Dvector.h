@@ -171,6 +171,14 @@ class Dvector
         //!					from index "start" of the current one to "start+count".
         Dvector view(bool copy, int start, int count) const;
 
+        //! @description	Ask if the Dvector owns its data or not.
+        //! @return			TRUE if the Dvector is owner of itts data, FALSE otherwise.
+        bool isOwner() const;
+
+        //! @description	Accessor to the data of the Dvector.
+        //! @return			A tab of double containing the data.
+        const double* getData() const;
+
 		//=============================================================================
     	//								ASSIGN OPERATOR
 		//=============================================================================

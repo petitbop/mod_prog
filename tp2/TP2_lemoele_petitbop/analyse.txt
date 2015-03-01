@@ -35,4 +35,6 @@ que le passage de pointeur ou ici de référence.
 	-		!=
 - On peut utiliser la méthode display() pour implémenter les opérateurs suivants :
 	-		<<
+- On peut utiliser l'opérateur = pour implémenter le constructeur par copie :
+	-		Dvector(Dvector const& x)
 Les autres opérateurs : >> = et () en lecture/écriture ne sont pas factorisables.

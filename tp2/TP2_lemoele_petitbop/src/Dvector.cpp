@@ -288,16 +288,24 @@ Dvector Dvector::view(bool copy, int start, int count) const{
     Dvector x = Dvector();
 
     if(copy){
-        x.alloc(count);
-        memcpy(x.tab, tab + start, count * sizeof(double));
-        x.own = false;
-    } else {
         x.tab = tab + start;
         x.length = count;
+        x.own = false;
+    } else {
+        x.alloc(count);
+        memcpy(x.tab, tab + start, count * sizeof(double));
         x.own = true;
     }
 
     return x;
+}
+
+bool Dvector::isOwner() const{
+    return own;
+}
+
+const double* Dvector::getData() const{
+    return tab;
 }
 
 //=============================================================================
@@ -317,4 +325,3 @@ Dvector& Dvector::operator=(Dvector const& x){
     }
     return *this;
 }
-
