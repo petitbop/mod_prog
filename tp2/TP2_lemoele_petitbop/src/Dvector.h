@@ -144,7 +144,7 @@ class Dvector
         void hard_copy(Dvector const& x);
         void hard_copy_slow(Dvector const& x);
 
-        bool isOwner();
+        bool isOwner() const;
         const double* getData() const;
 
         Dvector view(bool copy, int start, int count) const;

@@ -309,7 +309,7 @@ Dvector Dvector::view(bool copy, int start, int count) const{
     return x;
 }
 
-bool Dvector::isOwner(){
+bool Dvector::isOwner() const{
     return own;
 }
 
