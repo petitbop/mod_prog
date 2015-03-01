@@ -170,4 +170,7 @@ Dvector operator+(Dvector const& x, Dvector const& y);
 //! @return			The result of the operation.
 Dvector operator-(Dvector const& x, Dvector const& y);
 
+std::ostream& operator<<(std::ostream& flux, Dvector const& x);
+std::istream& operator>>(std::istream& flux, Dvector& x);
+
 #endif

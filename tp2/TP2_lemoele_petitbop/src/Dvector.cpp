@@ -59,12 +59,8 @@ Dvector::Dvector(string fileName){
     data.clear();
     data.seekg(0, ios::beg);
 
-    if(data){
-        for(int i = 0; i < length; i++){
-            data >> tab[i];
-        }
-    } else {
-        throw runtime_error("Erreur interne : le fichier " + fileName + " n'a pas pu être rouvert...");
+    for(int i = 0; i < length; i++){
+        data >> tab[i];
     }
 
     data.close();
@@ -206,4 +202,20 @@ Dvector operator-(Dvector const& x, Dvector const& y){
     Dvector z = Dvector(x);
     z -= y;
     return z;
+}
+
+ostream& operator<<(ostream& flux, Dvector const& x){
+    x.display(flux);
+    return flux;
+}
+
+istream& operator>>(istream& flux, Dvector& x){
+    double a;
+    int i = 0;
+    int x_size = x.size();
+    while(flux >> a && i < x_size){
+        x(i) = a;
+        i++;
+    }
+    return flux;
 }
