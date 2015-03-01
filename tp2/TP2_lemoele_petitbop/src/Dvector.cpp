@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void Dvector::init(int n, double val){
+void Dvector::alloc(int n){
     if(n < 0){
         throw invalid_argument("Initialisation d'un Dvector de taille négative");
     }
@@ -12,11 +12,24 @@ void Dvector::init(int n, double val){
     }
     if(n > 0){
         tab = new double[length];
-        for(int i = 0; i < length; i++){
-            tab[i] = val;
-        }
+    }
+}
+
+void Dvector::init(int n, double val){
+    alloc(n);
+    own = true;
+    for(int i = 0; i < length; i++){
+        tab[i] = val;
     }
     srand(time(NULL));
+}
+
+void Dvector::free(){
+    bool is_null = length == 0;
+    bool own_stuff = !is_null && own;
+    if(own_stuff){
+        delete [] tab;
+    }
 }
 
 //=============================================================================
@@ -34,10 +47,8 @@ Dvector::Dvector(int n, double val) {
 
 Dvector::Dvector(Dvector const& x) {
     cout << "Copy constructor Dvector(Dvector const& x). \n";
-    init(x.length);
-    for(int i = 0; i < length; i++){
-        (*this)(i) = x(i);
-    }
+    init(0);
+    *this = x;
 }
 
 Dvector::Dvector(string fileName){
@@ -74,9 +85,7 @@ Dvector::Dvector(string fileName){
 //=============================================================================
 Dvector::~Dvector(){
     cout << "Destructor ~Dvector(). \n";
-    if(length > 0){
-        delete [] tab;
-    }
+    free();
 }
 
 //=============================================================================
@@ -233,4 +242,69 @@ bool operator==(Dvector const& x, Dvector const& y) {
     for (int i = 0; i < x.size(); ++i)
         if (x(i) != y(i)) return false;
     return true;
+}
+
+void Dvector::soft_copy(Dvector const& x){
+    length = x.length;
+    tab = x.tab;
+    own = false;
+}
+
+void Dvector::hard_copy(Dvector const& x){
+    free();
+    alloc(x.size());
+
+    memcpy(this->tab, x.tab, x.size()*sizeof(double));
+    own = true;
+}
+
+void Dvector::hard_copy_slow(Dvector const& x){
+    free();
+    alloc(x.size());
+
+    for(int i = 0; i < length; i++){
+        (*this)(i) = x(i);
+    }
+    own = true;
+}
+
+Dvector& Dvector::operator=(Dvector const& x){
+    bool is_null = length == 0;
+    bool own_stuff = (!is_null) && own;
+    if(own_stuff || (is_null && x.own)){
+        (*this).hard_copy(x);
+    } else {
+        bool diff_length = !is_null && length != x.length;
+        if((!own_stuff) && diff_length){
+            throw new invalid_argument("Assignation incompatible : membre gauche non propriétaire et tailles différentes");
+        }
+        (*this).soft_copy(x);
+    }
+    return *this;
+}
+
+Dvector Dvector::view(bool copy, int start, int count) const{
+    if(length == 0){
+        throw new length_error("View sur un Dvector de taille nulle");
+    }
+    if (cout <= 0){
+        throw new invalid_argument("View d'un nombre négatif ou nul d'éléments");
+    }
+    if(start < 0 || start + count - 1 > length - 1){
+        throw new out_of_range("Débordement d'indice dans un view");
+    }
+
+    Dvector x = Dvector();
+
+    if(copy){
+        x.alloc(count);
+        memcpy(x.tab, tab + start, count * sizeof(double));
+        x.own = false;
+    } else {
+        x.tab = tab + start;
+        x.length = count;
+        x.own = true;
+    }
+
+    return x;
 }

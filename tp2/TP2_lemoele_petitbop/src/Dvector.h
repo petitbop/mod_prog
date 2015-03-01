@@ -17,6 +17,7 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <cstring>
 
 //!
 //! @class 		Dvector
@@ -28,12 +29,17 @@ class Dvector
     private :
         double *tab;
         int length;
+        bool own;
 
         //! @fn 			Method to initialize a vector.
         //! @param size 	Initial length of the vector.
         //! @param val		Initial value of all the components of the vector.
         //!					Optional parameter.
         void init(int size, double val = 0);
+        void alloc(int size);
+        void free();
+
+        void soft_copy(Dvector const& x);
 
     public :
 
@@ -133,6 +139,12 @@ class Dvector
         //! @param x 		The Dvector to substract.
         //! @return			A reference to the Dvector resulting of the operation.
         Dvector& operator-=(Dvector const& x);
+
+        Dvector& operator=(Dvector const& x);
+        void hard_copy(Dvector const& x);
+        void hard_copy_slow(Dvector const& x);
+
+        Dvector view(bool copy, int start, int count) const;
 
 };
 
