@@ -172,24 +172,6 @@ Dvector& Dvector::operator-=(Dvector const& v){
     return *this;
 }
 
-Dvector& Dvector::operator=(Dvector const& x){
-    free();
-    alloc(x.size());
-
-    memcpy(this->tab, x.tab, x.size()*sizeof(double));
-    return *this;
-}
-
-Dvector& Dvector::egal(Dvector const& x){
-    free();
-    alloc(x.size());
-
-    for(int i = 0; i < length; i++){
-        (*this)(i) = x(i);
-    }
-    return *this;
-}
-
 
 //=============================================================================
 //                      ARITHMETIC OPERATORS
@@ -260,3 +242,22 @@ bool operator==(Dvector const& x, Dvector const& y) {
         if (x(i) != y(i)) return false;
     return true;
 }
+
+Dvector& Dvector::operator=(Dvector const& x){
+    free();
+    alloc(x.size());
+
+    memcpy(this->tab, x.tab, x.size()*sizeof(double));
+    return *this;
+}
+
+Dvector& Dvector::egal(Dvector const& x){
+    free();
+    alloc(x.size());
+
+    for(int i = 0; i < length; i++){
+        (*this)(i) = x(i);
+    }
+    return *this;
+}
+
