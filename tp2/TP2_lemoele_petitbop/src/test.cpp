@@ -100,8 +100,8 @@ int main (int argc, const char* argv[]) {
 	u1-=u2;
 	u1.display(std::cout);
 
-	// std::cout<<std::endl<<"===========================================================================================";
-	// std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs de flux :"<<std::endl;
-	// std::cout<<u1;
+	std::cout<<std::endl<<"===========================================================================================";
+	std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs de flux :"<<std::endl;
+	std::cout<<u1;
 
 } 
