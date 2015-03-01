@@ -126,7 +126,7 @@ double & Dvector::operator()(int i) const {
     }
 }
 
-Dvector Dvector::operator +(const double d) {
+Dvector Dvector::operator +(const double d) const {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
         Res.tab[i] = tab[i]+d;
@@ -134,18 +134,18 @@ Dvector Dvector::operator +(const double d) {
     // Res+=d;
     return Res; 
 }
-Dvector Dvector::operator -(const double d) {
+Dvector Dvector::operator -(const double d) const {
     Dvector Res = Dvector(*this);
     return Res+(-d); 
 }
-Dvector Dvector::operator *(const double d) {
+Dvector Dvector::operator *(const double d) const {
     Dvector Res = Dvector(length);
     for (int i=0; i<length; i++) {
         Res.tab[i] = tab[i]*d;
     }
     return Res; 
 }
-Dvector Dvector::operator /(const double d) {
+Dvector Dvector::operator /(const double d) const {
     Dvector Res = Dvector(*this);
     return Res*(1/d); 
 }
@@ -219,6 +219,11 @@ void Dvector::operator -= (Dvector & v){
         throw std::length_error("Tentative de soustraction de deux Dvector de tailles différentes");
     }
 }
+
+// std::ostream & operator<<(std::ostream &flux, Dvector const& v ) {
+//     v.display(flux);
+//     return flux;
+// }
 
 // ============================= OPERATEURS EXTERNES =============================
 // Dvector & operator +(const Dvector & v, const double d) {

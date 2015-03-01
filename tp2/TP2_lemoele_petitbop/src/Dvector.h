@@ -87,24 +87,24 @@ class Dvector
 		//! 				Exemple : dvector + 4.2;
 		//! @param d 		The double to add.
 		//! @return			The result of the operation.
-		Dvector operator +(const double d);
+		Dvector operator +(const double d) const;
 
 		//! @description	Substract a double to all members of a Dvector.
 		//! 				Exemple : dvector - 4.2;
 		//! @param d 		The double to substract.
 		//! @return			The result of the operation.
-		Dvector operator -(const double d);
+		Dvector operator -(const double d) const;
 
 		//! @description	Multiply a double to all members of a Dvector.
 		//! 				Exemple : dvector * 4.2;
 		//! @param d 		The double to multiply.
 		//! @return			The result of the operation.
-		Dvector operator *(const double d);
+		Dvector operator *(const double d) const;
 
 		//! @description	Divise all members of a Dvector by a double.
 		//! 				Exemple : dvector / 4.2;
 		//! @param d 		The double to divise by.
-		Dvector operator /(const double d);
+		Dvector operator /(const double d) const;
 
 		//! @description	Add a Dvector to another.
 		//! 				Exemple : dvector1 + dvector2;
@@ -158,4 +158,6 @@ class Dvector
 
 		// Dvector & operator +(const Dvector & v, const double d);
 		Dvector & operator + (const Dvector & v1, const Dvector & v2);
+
+		// std::ostream & operator<<(std::ostream &flux, Dvector const& v );
 #endif

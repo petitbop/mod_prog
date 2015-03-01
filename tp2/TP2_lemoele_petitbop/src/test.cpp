@@ -99,4 +99,9 @@ int main (int argc, const char* argv[]) {
 	std::cout<<std::endl<<"==> Soustraction u1 et u2 :"<<std::endl;
 	u1-=u2;
 	u1.display(std::cout);
+
+	// std::cout<<std::endl<<"===========================================================================================";
+	// std::cout<<std::endl<<"====> Test de la surcharge d'opérateurs de flux :"<<std::endl;
+	// std::cout<<u1;
+
 } 
