@@ -258,26 +258,27 @@ void Dvector::hard_copy(Dvector const& x){
     own = true;
 }
 
+void Dvector::hard_copy_slow(Dvector const& x){
+    free();
+    alloc(x.size());
+
+    for(int i = 0; i < length; i++){
+        (*this)(i) = x(i);
+    }
+    own = true;
+}
+
 Dvector& Dvector::operator=(Dvector const& x){
     bool is_null = length == 0;
     bool own_stuff = (!is_null) && own;
     if(own_stuff || (is_null && x.own)){
         (*this).hard_copy(x);
     } else {
-        if((!own_stuff) && (length != 0) && (length != x.length)){
+        bool diff_length = !is_null && length != x.length;
+        if((!own_stuff) && diff_length){
             throw new invalid_argument("Assignation incompatible : membre gauche non propriétaire et tailles différentes");
         }
         (*this).soft_copy(x);
-    }
-    return *this;
-}
-
-Dvector& Dvector::egal(Dvector const& x){
-    free();
-    alloc(x.size());
-
-    for(int i = 0; i < length; i++){
-        (*this)(i) = x(i);
     }
     return *this;
 }

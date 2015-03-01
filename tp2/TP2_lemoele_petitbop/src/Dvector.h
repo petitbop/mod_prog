@@ -40,7 +40,6 @@ class Dvector
         void free();
 
         void soft_copy(Dvector const& x);
-        void hard_copy(Dvector const& x);
 
     public :
 
@@ -142,7 +141,8 @@ class Dvector
         Dvector& operator-=(Dvector const& x);
 
         Dvector& operator=(Dvector const& x);
-        Dvector& egal(Dvector const& x);
+        void hard_copy(Dvector const& x);
+        void hard_copy_slow(Dvector const& x);
 
         Dvector view(bool copy, int start, int count) const;
 
