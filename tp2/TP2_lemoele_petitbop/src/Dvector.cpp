@@ -47,15 +47,15 @@ Dvector::Dvector(std::string fileName){
         while(data >> a){
             nbElem++;
         }
+        init(nbElem);
     } else {
         init(0);
         return;
     }
-    data.close();
 
-    init(nbElem);
+    data.clear();
+    data.seekg(0, std::ios::beg);
 
-    data.open(fileName.c_str());
     if(data){
         for(int i = 0; i < length; i++){
             data >> tab[i];

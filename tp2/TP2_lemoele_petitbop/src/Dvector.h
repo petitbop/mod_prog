@@ -49,7 +49,6 @@ class Dvector
         //! @description 	Copy constructor.
         //! @param v 		Dvector instance from which to create a new one.
         Dvector(Dvector const& v);
-        // Dvector(Dvector& v);
 
         //! @description 	Constructor from a file.
         //! @param fileName	File from which to read the initial values of the vector.
