@@ -171,10 +171,25 @@ Dvector& Dvector::operator=(Dvector const& x){
             delete [] tab;
         }
         init(x.size());
+    } else {
+        this->length = x.size();
     }
-    this->length = x.size();
     memcpy(x.tab, this->tab, x.size()*sizeof(double));
     return *this;
+}
+
+void Dvector::egal(Dvector const& x){
+    if(length_alloc < x.size()){
+        if(length_alloc > 0){
+            delete [] tab;
+        }
+        init(x.size());
+    } else {
+        this->length = x.size();
+    }
+    for(int i = 0; i < length; i++){
+        (*this)(i) = x(i);
+    }
 }
 
 

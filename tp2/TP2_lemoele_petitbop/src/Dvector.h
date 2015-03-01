@@ -137,6 +137,7 @@ class Dvector
         Dvector& operator-=(Dvector const& x);
 
         Dvector& operator=(Dvector const& x);
+        void egal(Dvector const& x);
 
 };
 
