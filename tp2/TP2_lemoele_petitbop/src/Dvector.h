@@ -31,14 +31,25 @@ class Dvector
         int length;
         bool own;
 
+		//=============================================================================
+    	//								PRIVATE METHODS
+		//=============================================================================
+        //! @fn 			Method to allocate a tab representing the vector.
+        //! @param size 	Length of the tab.
+        void alloc(int size);
+
         //! @fn 			Method to initialize a vector.
         //! @param size 	Initial length of the vector.
         //! @param val		Initial value of all the components of the vector.
         //!					Optional parameter.
         void init(int size, double val = 0);
-        void alloc(int size);
+
+        //! @fn 			Method to free the tab representing the vector.
         void free();
 
+        //! @fn				Copying a Dvector in the current one, when the Dvector
+        //!					does not owns its data.
+        //! @param x 		The Dvector to assign.
         void soft_copy(Dvector const& x);
 
     public :
@@ -140,14 +151,42 @@ class Dvector
         //! @return			A reference to the Dvector resulting of the operation.
         Dvector& operator-=(Dvector const& x);
 
-        Dvector& operator=(Dvector const& x);
+		//=============================================================================
+    	//								SUB-VIEWING METHODS
+		//=============================================================================
+        //! @description	Copying a Dvector in the current one, when the Dvector owns its data.
+        //! @param x 		The Dvector to assign.
         void hard_copy(Dvector const& x);
+
+        //! @description	Copying a Dvector in the current one, when the Dvector owns its data.
+        //!					(Slow version : not using the memcpy method.)
+        //! @param x 		The Dvector to assign.
         void hard_copy_slow(Dvector const& x);
 
+        //! @description	Visualize a sub-part of a Dvector as a whole vector.
+        //! @param copy 	TRUE to copy the Dvector data, FALSE otherwise.
+        //! @param start	First index of the sub-part.
+        //! @param count	Length of the sub-part.
+        //! @return			The Dvector sub-part of the current one. Vector that ranges 
+        //!					from index "start" of the current one to "start+count".
+        Dvector view(bool copy, int start, int count) const;
+
+        //! @description	Ask if the Dvector owns its data or not.
+        //! @return			TRUE if the Dvector is owner of itts data, FALSE otherwise.
         bool isOwner() const;
+
+        //! @description	Accessor to the data of the Dvector.
+        //! @return			A tab of double containing the data.
         const double* getData() const;
 
-        Dvector view(bool copy, int start, int count) const;
+		//=============================================================================
+    	//								ASSIGN OPERATOR
+		//=============================================================================
+        //! @description	Assign a Dvector to the current one
+        //! 				Exemple : dvector1 = dvector2;
+        //! @param x 		The Dvector to assign.
+        //! @return			A reference to the Dvector resulting of the operation.
+        Dvector& operator=(Dvector const& x);
 
 };
 
