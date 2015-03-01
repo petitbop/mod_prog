@@ -2,6 +2,9 @@
 
 using namespace std;
 
+//=============================================================================
+//                              PRIVATE METHODS
+//=============================================================================
 void Dvector::alloc(int n){
     if(n < 0){
         throw invalid_argument("Initialisation d'un Dvector de taille négative");
@@ -244,6 +247,9 @@ bool operator==(Dvector const& x, Dvector const& y) {
     return true;
 }
 
+//=============================================================================
+//                              SUB-VIEWING METHODS
+//=============================================================================
 void Dvector::soft_copy(Dvector const& x){
     length = x.length;
     tab = x.tab;
@@ -266,21 +272,6 @@ void Dvector::hard_copy_slow(Dvector const& x){
         (*this)(i) = x(i);
     }
     own = true;
-}
-
-Dvector& Dvector::operator=(Dvector const& x){
-    bool is_null = length == 0;
-    bool own_stuff = (!is_null) && own;
-    if(own_stuff || (is_null && x.own)){
-        (*this).hard_copy(x);
-    } else {
-        bool diff_length = !is_null && length != x.length;
-        if((!own_stuff) && diff_length){
-            throw new invalid_argument("Assignation incompatible : membre gauche non propriétaire et tailles différentes");
-        }
-        (*this).soft_copy(x);
-    }
-    return *this;
 }
 
 Dvector Dvector::view(bool copy, int start, int count) const{
@@ -308,3 +299,22 @@ Dvector Dvector::view(bool copy, int start, int count) const{
 
     return x;
 }
+
+//=============================================================================
+//                              ASSIGN OPERATOR
+//=============================================================================
+Dvector& Dvector::operator=(Dvector const& x){
+    bool is_null = length == 0;
+    bool own_stuff = (!is_null) && own;
+    if(own_stuff || (is_null && x.own)){
+        (*this).hard_copy(x);
+    } else {
+        bool diff_length = !is_null && length != x.length;
+        if((!own_stuff) && diff_length){
+            throw new invalid_argument("Assignation incompatible : membre gauche non propriétaire et tailles différentes");
+        }
+        (*this).soft_copy(x);
+    }
+    return *this;
+}
+
