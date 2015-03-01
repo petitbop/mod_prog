@@ -29,13 +29,14 @@ class Dvector
     private :
         double *tab;
         int length;
-        int length_alloc;
 
         //! @fn 			Method to initialize a vector.
         //! @param size 	Initial length of the vector.
         //! @param val		Initial value of all the components of the vector.
         //!					Optional parameter.
         void init(int size, double val = 0);
+        void alloc(int size);
+        void free();
 
     public :
 
@@ -137,7 +138,7 @@ class Dvector
         Dvector& operator-=(Dvector const& x);
 
         Dvector& operator=(Dvector const& x);
-        void egal(Dvector const& x);
+        Dvector& egal(Dvector const& x);
 
 };
 

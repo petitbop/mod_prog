@@ -2,22 +2,31 @@
 
 using namespace std;
 
-void Dvector::init(int n, double val){
+void Dvector::alloc(int n){
     if(n < 0){
         throw invalid_argument("Initialisation d'un Dvector de taille négative");
     }
     length = n;
-    length_alloc = n;
     if(n == 0){
         tab = NULL; 
     }
     if(n > 0){
         tab = new double[length];
-        for(int i = 0; i < length; i++){
-            tab[i] = val;
-        }
+    }
+}
+
+void Dvector::init(int n, double val){
+    alloc(n);
+    for(int i = 0; i < length; i++){
+        tab[i] = val;
     }
     srand(time(NULL));
+}
+
+void Dvector::free(){
+    if(length > 0){
+        delete [] tab;
+    }
 }
 
 //=============================================================================
@@ -75,9 +84,7 @@ Dvector::Dvector(string fileName){
 //=============================================================================
 Dvector::~Dvector(){
     cout << "Destructor ~Dvector(). \n";
-    if(length_alloc > 0){
-        delete [] tab;
-    }
+    free();
 }
 
 //=============================================================================
@@ -166,27 +173,17 @@ Dvector& Dvector::operator-=(Dvector const& v){
 }
 
 Dvector& Dvector::operator=(Dvector const& x){
-    if(length_alloc < x.size()){
-        if(length_alloc > 0){
-            delete [] tab;
-        }
-        init(x.size());
-    } else {
-        this->length = x.size();
-    }
-    memcpy(x.tab, this->tab, x.size()*sizeof(double));
+    free();
+    alloc(x.size());
+
+    memcpy(this->tab, x.tab, x.size()*sizeof(double));
     return *this;
 }
 
-void Dvector::egal(Dvector const& x){
-    if(length_alloc < x.size()){
-        if(length_alloc > 0){
-            delete [] tab;
-        }
-        init(x.size());
-    } else {
-        this->length = x.size();
-    }
+Dvector& Dvector::egal(Dvector const& x){
+    free();
+    alloc(x.size());
+
     for(int i = 0; i < length; i++){
         (*this)(i) = x(i);
     }
