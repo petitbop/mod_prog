@@ -7,6 +7,7 @@ void Dvector::init(int n, double val){
         throw invalid_argument("Initialisation d'un Dvector de taille négative");
     }
     length = n;
+    length_alloc = n;
     if(n == 0){
         tab = NULL; 
     }
@@ -74,7 +75,7 @@ Dvector::Dvector(string fileName){
 //=============================================================================
 Dvector::~Dvector(){
     cout << "Destructor ~Dvector(). \n";
-    if(length > 0){
+    if(length_alloc > 0){
         delete [] tab;
     }
 }
@@ -161,6 +162,18 @@ Dvector& Dvector::operator+=(Dvector const& x){
 }
 Dvector& Dvector::operator-=(Dvector const& v){
     (*this) += -v;
+    return *this;
+}
+
+Dvector& Dvector::operator=(Dvector const& x){
+    if(length_alloc < x.size()){
+        if(length_alloc > 0){
+            delete [] tab;
+        }
+        init(x.size());
+    }
+    this->length = x.size();
+    memcpy(x.tab, this->tab, x.size()*sizeof(double));
     return *this;
 }
 

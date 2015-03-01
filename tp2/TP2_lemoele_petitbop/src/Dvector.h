@@ -17,6 +17,7 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <cstring>
 
 //!
 //! @class 		Dvector
@@ -28,6 +29,7 @@ class Dvector
     private :
         double *tab;
         int length;
+        int length_alloc;
 
         //! @fn 			Method to initialize a vector.
         //! @param size 	Initial length of the vector.
@@ -133,6 +135,8 @@ class Dvector
         //! @param x 		The Dvector to substract.
         //! @return			A reference to the Dvector resulting of the operation.
         Dvector& operator-=(Dvector const& x);
+
+        Dvector& operator=(Dvector const& x);
 
 };
 
