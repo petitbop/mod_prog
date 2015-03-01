@@ -17,6 +17,7 @@ void Dvector::alloc(int n){
 
 void Dvector::init(int n, double val){
     alloc(n);
+    own = true;
     for(int i = 0; i < length; i++){
         tab[i] = val;
     }
@@ -44,10 +45,8 @@ Dvector::Dvector(int n, double val) {
 
 Dvector::Dvector(Dvector const& x) {
     cout << "Copy constructor Dvector(Dvector const& x). \n";
-    init(x.length);
-    for(int i = 0; i < length; i++){
-        (*this)(i) = x(i);
-    }
+    init(0);
+    *this = x;
 }
 
 Dvector::Dvector(string fileName){
@@ -243,11 +242,31 @@ bool operator==(Dvector const& x, Dvector const& y) {
     return true;
 }
 
-Dvector& Dvector::operator=(Dvector const& x){
+void Dvector::soft_copy(Dvector const& x){
+    length = x.length;
+    tab = x.tab;
+    own = false;
+}
+
+void Dvector::hard_copy(Dvector const& x){
     free();
     alloc(x.size());
 
     memcpy(this->tab, x.tab, x.size()*sizeof(double));
+    own = true;
+}
+
+Dvector& Dvector::operator=(Dvector const& x){
+    bool is_null = length == 0;
+    bool own_stuff = (!is_null) && own;
+    if(own_stuff || (is_null && x.own)){
+        (*this).hard_copy(x);
+    } else {
+        if((!own_stuff) && (length != 0) && (length != x.length)){
+            throw new invalid_argument("Assignation incompatible : membre gauche non propriétaire et tailles différentes");
+        }
+        (*this).soft_copy(x);
+    }
     return *this;
 }
 
@@ -261,3 +280,28 @@ Dvector& Dvector::egal(Dvector const& x){
     return *this;
 }
 
+Dvector Dvector::view(bool copy, int start, int count) const{
+    if(length == 0){
+        throw new length_error("View sur un Dvector de taille nulle");
+    }
+    if (cout <= 0){
+        throw new invalid_argument("View d'un nombre négatif ou nul d'éléments");
+    }
+    if(start < 0 || start + count - 1 > length - 1){
+        throw new out_of_range("Débordement d'indice dans un view");
+    }
+
+    Dvector x = Dvector();
+
+    if(copy){
+        x.alloc(count);
+        memcpy(x.tab, tab + start, count * sizeof(double));
+        x.own = false;
+    } else {
+        x.tab = tab + start;
+        x.length = count;
+        x.own = true;
+    }
+
+    return x;
+}

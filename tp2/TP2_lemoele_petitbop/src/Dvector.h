@@ -29,6 +29,7 @@ class Dvector
     private :
         double *tab;
         int length;
+        bool own;
 
         //! @fn 			Method to initialize a vector.
         //! @param size 	Initial length of the vector.
@@ -37,6 +38,9 @@ class Dvector
         void init(int size, double val = 0);
         void alloc(int size);
         void free();
+
+        void soft_copy(Dvector const& x);
+        void hard_copy(Dvector const& x);
 
     public :
 
@@ -139,6 +143,8 @@ class Dvector
 
         Dvector& operator=(Dvector const& x);
         Dvector& egal(Dvector const& x);
+
+        Dvector view(bool copy, int start, int count) const;
 
 };
 
