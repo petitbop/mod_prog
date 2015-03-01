@@ -1,8 +1,10 @@
 #include "Dvector.h"
 
+using namespace std;
+
 void Dvector::init(int n, double val){
     if(n < 0){
-        throw std::invalid_argument("Initialisation d'un Dvector de taille négative");
+        throw invalid_argument("Initialisation d'un Dvector de taille négative");
     }
     length = n;
     if(n == 0){
@@ -18,28 +20,29 @@ void Dvector::init(int n, double val){
 }
 
 Dvector::Dvector(){
-    std::cout << "Default constructor Dvector(). \n";
+    cout << "Default constructor Dvector(). \n";
     init(0);
 }
 
 Dvector::Dvector(int n, double val) {
-    std::cout << "Constructor Dvector(unsigned int length, double default_valor). \n";
+    cout << "Constructor Dvector(unsigned int length, double default_valor). \n";
     init(n, val);
 }
 
 Dvector::Dvector(Dvector const& x) {
-    std::cout << "Copy constructor Dvector(Dvector const& x). \n";
+    cout << "Copy constructor Dvector(Dvector const& x). \n";
     init(x.length);
     for(int i = 0; i < length; i++){
         (*this)(i) = x(i);
     }
 }
 
-Dvector::Dvector(std::string fileName){
-    std::cout << "Constructor Dvector(std::string entry_file). \n";
-    std::ifstream data;
+Dvector::Dvector(string fileName){
+    cout << "Constructor Dvector(string entry_file). \n";
+    ifstream data;
 
     data.open(fileName.c_str());
+
     int nbElem;
     if(data){
         double a;
@@ -54,20 +57,21 @@ Dvector::Dvector(std::string fileName){
     }
 
     data.clear();
-    data.seekg(0, std::ios::beg);
+    data.seekg(0, ios::beg);
 
     if(data){
         for(int i = 0; i < length; i++){
             data >> tab[i];
         }
     } else {
-        throw std::runtime_error("Erreur interne : le fichier " + fileName + " n'a pas pu être rouvert...");
+        throw runtime_error("Erreur interne : le fichier " + fileName + " n'a pas pu être rouvert...");
     }
+
     data.close();
 }
 
 Dvector::~Dvector(){
-    std::cout << "Destructor ~Dvector(). \n";
+    cout << "Destructor ~Dvector(). \n";
     if(length > 0){
         delete [] tab;
     }
@@ -75,7 +79,7 @@ Dvector::~Dvector(){
 
 
 
-void Dvector::display(std::ostream& str) const{
+void Dvector::display(ostream& str) const{
     for(int i = 0; i < length; i++){
         str<<tab[i]<<"\n";
     }
@@ -97,7 +101,7 @@ double& Dvector::operator()(int i) {
     if(i >= 0 && i < length){
         return tab[i];
     } else {
-        throw std::out_of_range("Débordement d'indice dans un Dvector");
+        throw out_of_range("Débordement d'indice dans un Dvector");
     }
 }
 
@@ -105,7 +109,7 @@ double Dvector::operator()(int i) const {
     if(i >= 0 && i < length){
         return tab[i];
     } else {
-        throw std::out_of_range("Débordement d'indice dans un Dvector");
+        throw out_of_range("Débordement d'indice dans un Dvector");
     }
 }
 
@@ -132,7 +136,7 @@ Dvector& Dvector::operator*=(double const& a) {
 
 Dvector& Dvector::operator/=(double const& a) {
     if(a == 0){
-        throw std::invalid_argument("Division d'un Dvector par zéro");
+        throw invalid_argument("Division d'un Dvector par zéro");
     }
 
     for (int i=0; i<length; i++) {
@@ -174,7 +178,7 @@ Dvector& Dvector::operator+=(Dvector const& x){
             (*this)(i) += x(i);
         }
     } else {
-        throw std::length_error("Addition de deux Dvector de tailles différentes");
+        throw length_error("Addition de deux Dvector de tailles différentes");
     }
     return *this;
 }
