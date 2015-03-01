@@ -25,7 +25,9 @@ void Dvector::init(int n, double val){
 }
 
 void Dvector::free(){
-    if(length > 0){
+    bool is_null = length == 0;
+    bool own_stuff = !is_null && own;
+    if(own_stuff){
         delete [] tab;
     }
 }
