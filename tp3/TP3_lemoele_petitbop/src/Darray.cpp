@@ -130,7 +130,7 @@ Darray& Darray::operator*=(double const& a) {
 }
 Darray& Darray::operator/=(double const& a) {
     if(a == 0){
-        throw invalid_argument("Division d'un Darray par zéro");
+        throw std::invalid_argument("Division d'un Darray par zéro");
     }
 
     for (int i=0; i<size_; i++) {
@@ -145,7 +145,7 @@ Darray& Darray::operator+=(Darray const& x){
             (*this)(i) += x(i);
         }
     } else {
-        throw length_error("Addition de deux Darray de tailles différentes");
+        throw std::length_error("Addition de deux Darray de tailles différentes");
     }
     return *this;
 }
