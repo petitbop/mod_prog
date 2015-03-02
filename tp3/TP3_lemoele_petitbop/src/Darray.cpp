@@ -108,3 +108,91 @@ void Darray::display(std::ostream& str) const{
 int Darray::size() const{
     return size_;
 }
+
+//=============================================================================
+//                      ARITHMETIC ASSIGN OPERATORS
+//=============================================================================
+Darray& Darray::operator+=(double const& a) {
+    for (int i=0; i<size_; i++) {
+        (*this)(i) += a;
+    }
+    return *this;
+}
+Darray& Darray::operator-=(double const& a) {
+    *this += (-a);
+    return *this;
+}
+Darray& Darray::operator*=(double const& a) {
+    for (int i=0; i<size_; i++) {
+        (*this)(i) *= a;
+    }
+    return *this;
+}
+Darray& Darray::operator/=(double const& a) {
+    if(a == 0){
+        throw invalid_argument("Division d'un Darray par zéro");
+    }
+
+    for (int i=0; i<size_; i++) {
+        (*this)(i) /= a;
+    }
+    return *this;
+}
+
+Darray& Darray::operator+=(Darray const& x){
+    if(size_ == x.size_){
+        for (int i=0; i<size_; i++) {
+            (*this)(i) += x(i);
+        }
+    } else {
+        throw length_error("Addition de deux Darray de tailles différentes");
+    }
+    return *this;
+}
+Darray& Darray::operator-=(Darray const& v){
+    (*this) += -v;
+    return *this;
+}
+
+
+//=============================================================================
+//                      ARITHMETIC OPERATORS
+//=============================================================================
+Darray operator+(Darray const& x, double const& a) {
+    Darray y = Darray(x);
+    y += a;
+    return y; 
+}
+Darray operator-(Darray const& x, double const& a) {
+    Darray y = Darray(x);
+    y += -a;
+    return y; 
+}
+Darray operator*(Darray const& x, double const& a) {
+    Darray y = Darray(x);
+    y *= a;
+    return y; 
+}
+Darray operator/(Darray const& x, double const& a) {
+    Darray y = Darray(x);
+    y /= a;
+    return y; 
+}
+
+Darray operator-(Darray const& x){
+    Darray y = Darray(x.size());
+    for(int i = 0; i < y.size(); i++){
+        y(i) = -x(i);
+    }
+    return y;
+}
+Darray operator+(Darray const& x, Darray const& y){
+    Darray z = Darray(x);
+    z += y;
+    return z;
+}
+Darray operator-(Darray const& x, Darray const& y){
+    Darray z = Darray(x);
+    z -= y;
+    return z;
+}
