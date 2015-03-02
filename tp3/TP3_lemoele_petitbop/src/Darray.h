@@ -22,7 +22,7 @@
 //!
 //! @class 		Darray
 //!
-//! @brief		Class creating an array. Inherited classes : Darray, Dmatrix
+//! @brief		Class creating an array. Can be inherited.
 //!
 class Darray {
 
@@ -47,7 +47,12 @@ class Darray {
 
         //! @fn 			Method to free the tab representing the array.
         void free();
-        
+
+        //! @fn				Copying a Darray in the current one, when the Darray
+        //!					does not owns its data.
+        //! @param x 		The Darray to assign.
+        void soft_copy(Darray const& x);
+
     public :
 
 		//=============================================================================
@@ -87,6 +92,55 @@ class Darray {
         //! @description	Accessor to the length of the array.
         //! @return int 	The length of the array.
         int size() const;
+
+		//=============================================================================
+    	//								ACCESSOR OPERATORS
+		//=============================================================================
+        //! @description	Access to a reference to a value of the array.
+        //! 				Exemple : darray(2);
+        //! @param i 		The index of the value.
+        //!					(0 <= i < size_)
+        //! @return			The reference to the value at index i.
+        double& operator()(int i);
+
+        //! @description	Access to a value of the array.
+        //! 				Exemple : darray(2);
+        //! @param i 		The index of the value.
+        //!					(0 <= i < size_)
+        //! @return			The value at index i.
+        double operator()(int i) const;
+
+		//=============================================================================
+    	//								SUB-VIEWING METHODS
+		//=============================================================================
+        //! @description	Copying a Darray in the current one, when the Darray owns its data.
+        //! @param x 		The Darray to assign.
+        void hard_copy(Darray const& x);
+
+        //! @description	Visualize a sub-part of a Darray as a whole array.
+        //! @param copy 	TRUE to copy the Darray data, FALSE otherwise.
+        //! @param start	First index of the sub-part.
+        //! @param count	Length of the sub-part.
+        //! @return			The Darray sub-part of the current one. array that ranges 
+        //!					from index "start" of the current one to "start+count".
+        Darray view(bool copy, int start, int count) const;
+
+        //! @description	Ask if the Darray owns its data or not.
+        //! @return			TRUE if the Darray is owner of itts data, FALSE otherwise.
+        bool isOwner() const;
+
+        //! @description	Accessor to the data of the Darray.
+        //! @return			A tab of double containing the data.
+        const double* getData() const;
+
+		//=============================================================================
+    	//								ASSIGN OPERATOR
+		//=============================================================================
+        //! @description	Assign a Darray to the current one
+        //! 				Exemple : darray1 = darray2;
+        //! @param x 		The Darray to assign.
+        //! @return			A reference to the Darray resulting of the operation.
+        Darray& operator=(Darray const& x);
 
 };
 

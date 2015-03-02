@@ -108,3 +108,92 @@ void Darray::display(std::ostream& str) const{
 int Darray::size() const{
     return size_;
 }
+
+//=============================================================================
+//                              ACCESSOR OPERATORS
+//=============================================================================
+double& Darray::operator()(int i) {
+    if(i >= 0 && i < size_){
+        return data[i];
+    } else {
+        throw std::out_of_range("Débordement d'indice dans un Darray");
+    }
+}
+
+double Darray::operator()(int i) const {
+    if(i >= 0 && i < size_){
+        return data[i];
+    } else {
+        throw std::out_of_range("Débordement d'indice dans un Darray");
+    }
+}
+
+//=============================================================================
+//                              SUB-VIEWING METHODS
+//=============================================================================
+void Darray::soft_copy(Darray const& x){
+    size_ = x.size_;
+    data = x.data;
+    owner = false;
+}
+
+void Darray::hard_copy(Darray const& x){
+    free();
+    alloc(x.size());
+
+    memcpy(this->data, x.data, x.size()*sizeof(double));
+    owner = true;
+}
+
+Darray Darray::view(bool copy, int start, int count) const{
+    if(size_ == 0){
+        throw new std::length_error("View sur un Darray de taille nulle");
+    }
+    if (count <= 0){
+        throw new std::invalid_argument("View d'un nombre négatif ou nul d'éléments");
+    }
+    if(start < 0 || start + count - 1 > size_ - 1){
+        throw new std::out_of_range("Débordement d'indice dans un view");
+    }
+
+    Darray x = Darray();
+
+    if(copy){
+        x.alloc(count);
+        memcpy(x.data, data + start, count * sizeof(double));
+        x.owner = true;
+    } else {
+        x.data = data + start;
+        x.size_ = count;
+        x.owner = false;
+    }
+
+    return x;
+}
+
+bool Darray::isOwner() const{
+    return owner;
+}
+
+const double* Darray::getData() const{
+    return data;
+}
+
+//=============================================================================
+//                              ASSIGN OPERATOR
+//=============================================================================
+Darray& Darray::operator=(Darray const& x){
+    bool is_null = size_ == 0;
+    bool own_stuff = (!is_null) && owner;
+    if(own_stuff || (is_null && x.owner)){
+        (*this).hard_copy(x);
+    } else {
+        bool diff_length = !is_null && size_ != x.size_;
+        if((!own_stuff) && diff_length){
+            throw new std::invalid_argument("Assignation incompatible : membre gauche non propriétaire et tailles différentes");
+        }
+        (*this).soft_copy(x);
+    }
+    return *this;
+}
+
