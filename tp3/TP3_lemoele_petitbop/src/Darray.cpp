@@ -49,7 +49,7 @@ Darray::Darray(){
 }
 
 Darray::Darray(int n, double val) {
-    std::cout << "Constructor Darray(unsigned int length, double default_valor). \n";
+    std::cout << "Constructor Darray(int length, double default_valor). \n";
     init(n, val);
 }
 
