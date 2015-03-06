@@ -18,6 +18,8 @@
 class Dvector : public Darray {
 
     public:
+		Dvector();
+		Dvector(int n, double val = 0);
         Dvector(Dvector const& x);
         Dvector& operator*=(Dvector const& x);
 

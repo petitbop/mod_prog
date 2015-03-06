@@ -1,5 +1,13 @@
 #include "Dvector.h"
 
+Dvector::Dvector():Darray(){
+
+}
+
+Dvector::Dvector(int n, double val):Darray(n, val){
+
+}
+
 Dvector::Dvector(Dvector const& x):Darray(x){
 
 }

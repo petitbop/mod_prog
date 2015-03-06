@@ -22,6 +22,11 @@ class Dmatrix : public Darray {
 		int m; 		/* nombre de lignes */
 		int n; 		/* nombre de colonnes */
 
+        //! @descritpion    Exchange the value at index (i,j) with the one at index (j,i).
+        //! @param i        The line index.
+        //! @param j        The column index.
+        void exchange(int i, int j);
+
 	public :
 
 		//=============================================================================
@@ -63,6 +68,9 @@ class Dmatrix : public Darray {
         //! @return int     The number of columns of the matrix.
         int columns() const;
 
+        //! @description    Transpose the current matrix, if it is square (n = m).
+        void transpose();
+
         //=============================================================================
         //                              ACCESSOR OPERATORS
         //=============================================================================
@@ -85,6 +93,15 @@ class Dmatrix : public Darray {
         double operator()(int line, int column) const;
 
         //=============================================================================
+        //                              ASSIGN OPERATOR
+        //=============================================================================
+        //! @description    Assign a Dmatrix to the current one
+        //!                 Exemple : dmatrix1 = dmatrix2;
+        //! @param x        The Dmatrix to assign.
+        //! @return         A reference to the Dmatrix resulting of the operation.
+        Dmatrix& operator=(Dmatrix const& x);
+
+        //=============================================================================
         //                              EXTRACTION METHODS
         //=============================================================================
         //! @description    Extract a line as a Dvector instance.
@@ -101,5 +118,22 @@ class Dmatrix : public Darray {
         Dvector column(int pos) const;
 
 };
+
+//=============================================================================
+//                              ARITHMETIC OPERATORS
+//=============================================================================
+//! @description    Multiply a Dvector to a Dmatrix.
+//!                 Exemple : Dmatrix * Dvector;
+//! @param x        The Dmatrix to which to multiply.
+//! @param y        The Dvector to multiply.
+//! @return         The Dvector resulting of the operation.
+Dvector operator*(Dmatrix const& x, Dvector const& y);
+
+//! @description    Multiply two Dmatrix.
+//!                 Exemple : Dmatrix * Dmatrix;
+//! @param x        The first Dmatrix to multiply.
+//! @param y        The second Dmatrix to multiply.
+//! @return         The Dmatrix resulting of the operation.
+Dmatrix operator*(Dmatrix const& x, Dmatrix const& y);
 
 #endif

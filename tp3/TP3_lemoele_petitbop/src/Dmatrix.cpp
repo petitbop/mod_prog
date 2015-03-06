@@ -43,7 +43,7 @@ void Dmatrix::display(std::ostream& str) const {
 	{
 		for (int j = 0; j < n; ++j)
 		{
-	        str<<operator()(i,j)<<" ";		
+	        str<<(*this)(i,j)<<" ";		
 		}
 		str<<std::endl;	
 	}
@@ -54,6 +54,29 @@ int Dmatrix::lines() const {
 }
 int Dmatrix::columns() const {
 	return n;
+}
+
+void Dmatrix::exchange(int i, int j) {
+	if (i >= 0 && i < m && j >= 0 && j < n) {
+		if (i != j)
+		{
+			double tmp = (*this)(i,j);
+			(*this)(i,j) = (*this)(j,i);
+			(*this)(j,i) = tmp;
+		}
+	} else {
+		throw std::invalid_argument("Débordement d'indice lors d'un échange de deux valeurs d'une matrice carrée.");
+	}
+}
+
+void Dmatrix::transpose() {
+	if (n == m) {
+		for (int i = 0; i < m; ++i)
+			for (int j = 0; j < i; ++j)
+				exchange(i,j);
+	} else {
+		throw std::domain_error("Cette méthode de transposition est réservée aux matrices carrées.");
+	}
 }
 
 //=============================================================================
@@ -68,15 +91,61 @@ double Dmatrix::operator()(int line, int column) const {
 }
 
 //=============================================================================
+//                              ASSIGN OPERATOR
+//=============================================================================
+Dmatrix& Dmatrix::operator=(Dmatrix const& x) {
+	// return dynamic_cast<Dmatrix &>(Darray::operator=(x));
+}
+
+//=============================================================================
 //                              EXTRACTION METHODS
 //=============================================================================
 Dvector Dmatrix::line(bool copy, int pos) const {
 }
 
 Dvector Dmatrix::column(int pos) const {
-	// Dvector v = Dvector(n);
-	// for (int j = 0; j < n; ++j)
-	// 	v(j) = operator()(pos,j);
-	// return v;
+	Dvector v = Dvector(n);
+	for (int j = 0; j < n; ++j)
+		v(j) = operator()(pos,j);
+	return v;
 }
 
+//=============================================================================
+//                              ARITHMETIC OPERATORS
+//=============================================================================
+Dvector operator*(Dmatrix const& x, Dvector const& y) {
+    if(x.columns() == y.size()){
+		int somme;
+	    Dvector z = Dvector(x.lines());
+    	for (int j = 0; j < x.columns(); ++j)
+    	{
+    		somme = 0;
+    		for (int i = 0; i < x.lines(); ++i)
+    			somme += x(i,j)*y(i);
+    		z(j) = somme;
+    	}
+    	return z;
+    } else {
+        throw std::length_error("Produit d'une Dmatrix et d'un Dvector incompatibles.");
+    }
+}
+
+Dmatrix operator*(Dmatrix const& x, Dmatrix const& y){
+    if(x.columns() == y.lines()){
+    	Dmatrix z = Dmatrix(x.lines(), y.columns());
+    	int somme;
+    	for (int i = 0; i < x.lines(); ++i)
+    	{
+    		for (int j = 0; j < y.columns(); ++j)
+    		{
+    			somme = 0;
+		    	for (int k = 0; k < x.columns(); ++k)
+		    		somme += x(i,k)*y(k,j);
+		    	z(i,j) = somme;
+    		}
+    	}
+    	return z;
+    } else {
+        throw std::length_error("Produit de deux Dmatrix incompatibles.");
+    }
+}
