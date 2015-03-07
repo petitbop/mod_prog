@@ -278,7 +278,7 @@ Dvector Dvector::view(bool copy, int start, int count) const{
     if(length == 0){
         throw new length_error("View sur un Dvector de taille nulle");
     }
-    if (cout <= 0){
+    if (count <= 0){
         throw new invalid_argument("View d'un nombre négatif ou nul d'éléments");
     }
     if(start < 0 || start + count - 1 > length - 1){
