@@ -86,14 +86,14 @@ void Dmatrix::transpose() {
 //                              ACCESSOR OPERATORS
 //=============================================================================
 double& Dmatrix::operator()(int line, int column) {
-    if(line < 0 || line >= n || column < 0 || column >= m){
+    if(line < 0 || line >= m || column < 0 || column >= n){
         throw std::out_of_range("Accès à un élément en-dehors de la matrice");
     }
 	return Darray::operator()(column + n*line);
 }
 
 double Dmatrix::operator()(int line, int column) const {
-    if(line < 0 || line >= n || column < 0 || column >= m){
+    if(line < 0 || line >= m || column < 0 || column >= n){
         throw std::out_of_range("Accès à un élément en-dehors de la matrice");
     }
 	return Darray::operator()(column + n*line);
