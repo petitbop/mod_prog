@@ -123,10 +123,10 @@ Dvector Dmatrix::line(bool copy, int pos) const {
     return v;
 }
 
-Dvector Dmatrix::column(int pos) const {
-	Dvector v = Dvector(n);
-	for (int j = 0; j < n; ++j)
-		v(j) = operator()(pos,j);
+Dvector Dmatrix::column(int j) const {
+	Dvector v = Dvector(m);
+	for (int i = 0; i < m; ++i)
+		v(i) = operator()(i,j);
 	return v;
 }
 
