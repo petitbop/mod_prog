@@ -21,11 +21,10 @@ class Dvector : public Darray {
 		Dvector();
 		Dvector(int n, double val = 0);
         Dvector(Dvector const& x);
-        Dvector& operator*=(Dvector const& x);
 
 
 };
 
-Dvector operator*(Dvector const& x, Dvector const& y);
+double operator*(Dvector const& x, Dvector const& y);
 
 #endif

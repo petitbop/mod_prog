@@ -12,19 +12,15 @@ Dvector::Dvector(Dvector const& x):Darray(x){
 
 }
 
-Dvector& Dvector::operator*=(Dvector const& x){
-    if(size_ == x.size_){
-        for (int i=0; i<size_; i++) {
-            (*this)(i) *= x(i);
-        }
-    } else {
+Dvector operator*(Dvector const& x, Dvector const& y){
+    if(x.size() != x.size()){
         throw std::length_error("Produit terme à terme de deux Darray de tailles différentes");
     }
-    return *this;
-}
 
-Dvector operator*(Dvector const& x, Dvector const& y){
-    Dvector z = Dvector(x);
-    z *= y;
-    return z;
+    double res = 0;
+    for (int i=0; i<x.size(); i++) {
+        res += x(i) * y(i);
+    }
+
+    return res;
 }
