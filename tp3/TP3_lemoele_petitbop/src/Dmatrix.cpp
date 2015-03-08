@@ -103,13 +103,24 @@ double Dmatrix::operator()(int line, int column) const {
 //                              ASSIGN OPERATOR
 //=============================================================================
 Dmatrix& Dmatrix::operator=(Dmatrix const& x) {
-	// return dynamic_cast<Dmatrix &>(Darray::operator=(x));
+    Darray::operator=((Darray const &) x);
+    m = x.lines();
+    n = x.columns();
+    return *this;
 }
 
 //=============================================================================
 //                              EXTRACTION METHODS
 //=============================================================================
 Dvector Dmatrix::line(bool copy, int pos) const {
+    Darray a = view(copy, n*pos, n);
+    Dvector v = Dvector();
+    if(copy){
+        v.hard_copy(a);
+    } else {
+        v.soft_copy(a);
+    }
+    return v;
 }
 
 Dvector Dmatrix::column(int pos) const {
