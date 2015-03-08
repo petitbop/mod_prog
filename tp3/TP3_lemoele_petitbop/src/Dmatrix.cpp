@@ -17,6 +17,9 @@ Dmatrix::Dmatrix() : Darray() {
 }
 
 Dmatrix::Dmatrix(int lines, int columns, double val) : Darray(lines*columns, val) {
+    if(lines < 0 || columns < 0){
+        throw std::invalid_argument("Initialisation d'une matrice avec une dimension de taille négative");
+    }
     std::cout << "Constructor Dmatrix(int lines, int columns, double default_valor). \n";
 	m = lines;
 	n = columns;
@@ -83,10 +86,16 @@ void Dmatrix::transpose() {
 //                              ACCESSOR OPERATORS
 //=============================================================================
 double& Dmatrix::operator()(int line, int column) {
+    if(line < 0 || line >= n || column < 0 || column >= m){
+        throw std::out_of_range("Accès à un élément en-dehors de la matrice");
+    }
 	return Darray::operator()(column + n*line);
 }
 
 double Dmatrix::operator()(int line, int column) const {
+    if(line < 0 || line >= n || column < 0 || column >= m){
+        throw std::out_of_range("Accès à un élément en-dehors de la matrice");
+    }
 	return Darray::operator()(column + n*line);
 }
 
@@ -138,6 +147,7 @@ Dmatrix operator*(Dmatrix const& x, Dmatrix const& y){
     	{
     		for (int j = 0; j < y.columns(); ++j)
     		{
+                // On pourrait faire un produit scalaire ici
     			somme = 0;
 		    	for (int k = 0; k < x.columns(); ++k)
 		    		somme += x(i,k)*y(k,j);
