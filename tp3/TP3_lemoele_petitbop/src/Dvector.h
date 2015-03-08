@@ -1,8 +1,8 @@
 //!
-//! @file 		Dmatrix.h
+//! @file 		Dvector.h
 //! @author 	lemoele petitbop
 //!
-//! @brief 		Header file for the class Dmatrix
+//! @brief 		Header file for the class Dvector
 //!
 
 #ifndef DVECTOR_H
@@ -11,7 +11,7 @@
 #include "Darray.h"
 
 //!
-//! @class 		Dmatrix
+//! @class 		Dvector
 //!
 //! @brief		Class creating a matrix. Inherited from public class Darray.
 //!

@@ -12,7 +12,7 @@ Dvector::Dvector(Dvector const& x):Darray(x){
 
 }
 
-Dvector operator*(Dvector const& x, Dvector const& y){
+double operator*(Dvector const& x, Dvector const& y){
     if(x.size() != x.size()){
         throw std::length_error("Produit terme à terme de deux Darray de tailles différentes");
     }
