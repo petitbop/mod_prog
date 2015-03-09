@@ -41,11 +41,11 @@ template <typename T> class Point {
         //=============================================================================
         //                              ACCESSORS
         //=============================================================================
-        //! @description    Default constructor.
+        //! @description    Accessor to the absciss.
         //! @return         The absciss of the point.
         T x();
 
-        //! @description    Default constructor.
+        //! @description    Accessor to the ordinate.
         //! @return         The ordinate of the point.
         T y();
 
