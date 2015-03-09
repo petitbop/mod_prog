@@ -31,11 +31,6 @@ class Darray {
     	double *data; 	/* donnees */
     	bool owner; 	/* flag proprietaire de data */
 
-        //! @fn				Copying a Darray in the current one, when the Darray
-        //!					does not owns its data.
-        //! @param x 		The Darray to assign.
-        void soft_copy(Darray const& x);
-
 	private :
 		//=============================================================================
     	//								PRIVATE METHODS
@@ -52,6 +47,11 @@ class Darray {
 
         //! @fn 			Method to free the tab representing the array.
         void free();
+
+        //! @fn				Copying a Darray in the current one, when the Darray
+        //!					does not owns its data.
+        //! @param x 		The Darray to assign.
+        void soft_copy(Darray const& x);
 
     public :
 

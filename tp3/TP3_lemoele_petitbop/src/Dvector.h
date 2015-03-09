@@ -21,8 +21,8 @@ class Dvector : public Darray {
 		Dvector();
 		Dvector(int n, double val = 0);
         Dvector(Dvector const& x);
-
-
+        Dvector(Darray const& a);
+        
 };
 
 double operator*(Dvector const& x, Dvector const& y);
