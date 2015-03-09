@@ -1,8 +1,8 @@
 //!
-//! @file 		Point.cpp
+//! @file 		Point.tpp
 //! @author 	lemoele petitbop
 //!
-//! @brief 		File for the class Point.
+//! @brief 		Implementation for the template class Point.
 //!
 
 #include "Point.h"

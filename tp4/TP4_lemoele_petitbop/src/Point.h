@@ -2,7 +2,7 @@
 //! @file 		Point.h
 //! @author 	lemoele petitbop
 //!
-//! @brief 		Header file for the class Darray
+//! @brief 		Header file for the template class Point.
 //!
 
 #ifndef POINT_H
