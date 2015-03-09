@@ -6,6 +6,7 @@
 //!
 
 #include "Dmatrix.h"
+#include <cmath>
 
 //=============================================================================
 //								CONSTRUCTORS
@@ -100,6 +101,16 @@ double Dmatrix::operator()(int line, int column) const {
 }
 
 //=============================================================================
+//                              SUB-VIEWING METHODS
+//=============================================================================
+
+void Dmatrix::hard_copy(Dmatrix const& x){
+    Darray::hard_copy((Darray const&) x);
+    m = x.m;
+    n = x.n;
+}
+
+//=============================================================================
 //                              ASSIGN OPERATOR
 //=============================================================================
 Dmatrix& Dmatrix::operator=(Dmatrix const& x) {
@@ -123,6 +134,38 @@ Dvector Dmatrix::column(int j) const {
 	for (int i = 0; i < m; ++i)
 		v(i) = operator()(i,j);
 	return v;
+}
+
+void Dmatrix::cholesky(){
+    if(m != n){
+        throw new std::invalid_argument("Application de la factorisation de Choleski à ume matrice non carrée");
+    }
+
+    Dmatrix a;
+    a.hard_copy(*this);
+    *this = Dmatrix(m, n, 0);
+    for(int k = 0; k < n; k++){
+
+        double sum_sq = 0;
+        for(int s = 0; s < k-1; s++){
+            sum_sq += operator()(k, s) * operator()(k, s);
+        }
+        (*this)(k, k) = std::sqrt(a(k, k) - sum_sq);
+
+        for(int i = k; i < n; i++){
+            double dot_prod = 0;
+            for(int s = 0; s < k-1; s++){
+                dot_prod += operator()(i, s) * operator()(k, s);
+            }
+
+            if((*this)(k, k) == 0.0){
+                return;
+            }
+
+            (*this)(i, k) = (a(i, k) - dot_prod)/((*this)(k,k));
+        }
+    
+    }
 }
 
 //=============================================================================

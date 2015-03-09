@@ -93,6 +93,12 @@ class Dmatrix : public Darray {
         double operator()(int line, int column) const;
 
         //=============================================================================
+        //                              SUB-VIEWING METHODS
+        //=============================================================================
+
+        void hard_copy(Dmatrix const& x);
+
+        //=============================================================================
         //                              ASSIGN OPERATOR
         //=============================================================================
         //! @description    Assign a Dmatrix to the current one
@@ -116,6 +122,8 @@ class Dmatrix : public Darray {
         //!                 (0 <= i < n)
         //! @return         The reference to the Dvector.
         Dvector column(int pos) const;
+
+        void cholesky();
 
 };
 
