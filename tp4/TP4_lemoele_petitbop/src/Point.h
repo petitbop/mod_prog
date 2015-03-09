@@ -24,11 +24,11 @@
 //!
 //! @brief		Class creating an 2D-point.
 //!
-class Point {
+template <typename T> class Point {
 
 	private :
-        double absciss;
-        double ordinate;
+        T absciss;
+        T ordinate;
 
     public :
 
@@ -36,19 +36,20 @@ class Point {
     	//								CONSTRUCTORS
 		//=============================================================================
         //! @description 	Default constructor.
-        Point(double x, double y);
+        Point(T x, T y);
 
         //=============================================================================
         //                              ACCESSORS
         //=============================================================================
         //! @description    Default constructor.
         //! @return         The absciss of the point.
-        double x();
+        T x();
 
         //! @description    Default constructor.
         //! @return         The ordinate of the point.
-        double y();
+        T y();
 
 };
 
+#include "Point.tpp"
 #endif

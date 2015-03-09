@@ -10,7 +10,7 @@
 //=============================================================================
 //								CONSTRUCTORS
 //=============================================================================
-Point::Point(double x, double y){
+template <typename T> Point<T>::Point(T x, T y){
 	absciss = x;
 	ordinate = y;
 }
@@ -18,10 +18,10 @@ Point::Point(double x, double y){
 //=============================================================================
 //                              ACCESSORS
 //=============================================================================
-double Point::x() {
+template <typename T> T Point<T>::x() {
 	return absciss;
 }
 
-double Point::y() {
+template <typename T> T Point<T>::y() {
 	return ordinate;
 }
