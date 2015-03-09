@@ -114,7 +114,15 @@ Dmatrix& Dmatrix::operator=(Dmatrix const& x) {
 //=============================================================================
 Dvector Dmatrix::line(bool copy, int pos) const {
     Darray a = view(copy, n*pos, n);
-    return Dvector(a);
+    if(a.isOwner()){
+        Dvector v(a.size());
+        v = a;
+        return v;
+    } else {
+        Dvector v(0);
+        v = a;
+        return v;
+    }
 }
 
 Dvector Dmatrix::column(int j) const {
