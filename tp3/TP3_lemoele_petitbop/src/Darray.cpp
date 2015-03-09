@@ -284,4 +284,3 @@ Darray& Darray::operator=(Darray const& x){
     }
     return *this;
 }
-

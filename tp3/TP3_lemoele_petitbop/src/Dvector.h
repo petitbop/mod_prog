@@ -21,6 +21,7 @@ class Dvector : public Darray {
 		Dvector();
 		Dvector(int n, double val = 0);
         Dvector(Dvector const& x);
+        Dvector(Darray const& x);
         
 };
 
