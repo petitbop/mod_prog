@@ -40,16 +40,18 @@ template <typename T> class Point {
         //! @param y        The ordinate.
         Point(T x, T y);
 
+        Point(Point<T> const & p);
+
         //=============================================================================
         //                              ACCESSORS
         //=============================================================================
         //! @description    Accessor to the absciss.
         //! @return         The absciss of the point.
-        T x();
+        T x() const;
 
         //! @description    Accessor to the ordinate.
         //! @return         The ordinate of the point.
-        T y();
+        T y() const;
 
 };
 
