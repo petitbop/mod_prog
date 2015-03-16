@@ -24,8 +24,21 @@
 //!
 //! @brief		Class creating an 2D-grid.
 //!
-template <typename T> class Maillage {
+template <typename T, class Container> class Maillage {
 
+
+    private :
+        Container<Triangle<T>> grid;
+
+    public :
+        //=============================================================================
+        //                              CONSTRUCTORS
+        //=============================================================================
+        //! @description    Constructor from heigth, width and origin.
+        //! @param m        The width.
+        //! @param n        The heigth.
+        //! @param origine  The origin on the grid.
+        Maillage(int m, int n, const Point<T>& origine);
 
 };
 

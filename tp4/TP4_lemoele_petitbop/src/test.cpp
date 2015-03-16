@@ -1,5 +1,6 @@
 #include "Point.h"
 #include "Triangle.h"
+#include "Maillage.h"
 
 int main() {
 	
@@ -19,4 +20,7 @@ int main() {
 	std::cout<<"Point p1 de t : ("<<t.p1().x()<<", "<<t.p1().y()<<"), (";
 	std::cout<<t.p2().x()<<", "<<t.p2().y()<<"), ("<<t.p3().x()<<", "<<t.p3().y()<<")"<<std::endl;
 
+	// std::cout<<std::endl<<"====> Test du constructeur de Maillage :"<<std::endl;
+	// Maillage<double,std::vector> m(3, 2, pt1);
+	
 }

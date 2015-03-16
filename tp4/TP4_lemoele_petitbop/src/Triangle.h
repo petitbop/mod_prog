@@ -38,7 +38,10 @@ template <typename T> class Triangle {
         //=============================================================================
         //                              CONSTRUCTORS
         //=============================================================================
-        //! @description    Default constructor.
+        //! @description    Constructor from points.
+        //! @param p1       The first point.
+        //! @param p2       The second point.
+        //! @param p3       The third point.
         Triangle(Point<T> p1, Point<T> p2, Point<T> p3);
 
         //=============================================================================

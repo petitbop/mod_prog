@@ -35,7 +35,9 @@ template <typename T> class Point {
 		//=============================================================================
     	//								CONSTRUCTORS
 		//=============================================================================
-        //! @description 	Default constructor.
+        //! @description 	Constructor from coordinates.
+        //! @param x        The absciss.
+        //! @param y        The ordinate.
         Point(T x, T y);
 
         //=============================================================================
