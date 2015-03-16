@@ -10,11 +10,12 @@
 //=============================================================================
 //                              CONSTRUCTORS
 //=============================================================================
-template <typename T> Triangle<T>::Triangle(Point<T> p1, Point<T> p2, Point<T> p3) {
-	point1 = p1;
-	point2 = p2;
-	point3 = p3;
-}
+
+template <typename T> Triangle<T>::Triangle(Point<T> p1, Point<T> p2, Point<T> p3) :
+		point1(p1.x(), p1.y()),
+		point2(p2.x(), p2.y()),
+		point3(p3.x(), p3.y())
+{}
 
 //=============================================================================
 //                              ACCESSORS
