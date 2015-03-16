@@ -18,14 +18,20 @@
 #include <fstream>
 #include <ctime>
 #include <cstring>
+#include "Point.h"
+#include "Triangle.h"
 
 //!
 //! @class 		Maillage
 //!
 //! @brief		Class creating an 2D-grid.
 //!
-template <typename T> class Maillage {
-
+template <typename T, template <typename> class Container>
+class Maillage {
+    public:
+        Maillage(int m, int n, Point<T>const & origine);
+    private:
+        Container<Triangle<T> > list_tri;
 
 };
 
