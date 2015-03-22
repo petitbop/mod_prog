@@ -49,15 +49,15 @@ template <typename T> class Triangle {
         //=============================================================================
         //! @description    Accessor to the first point.
         //! @return         The first point of the triangle.
-        Point<T> p1();
+        Point<T> p1() const;
 
         //! @description    Accessor to the second point.
         //! @return         The second point of the triangle.
-        Point<T> p2();
+        Point<T> p2() const;
 
         //! @description    Accessor to the third point.
         //! @return         The third point of the triangle.
-        Point<T> p3();
+        Point<T> p3() const;
 
         void transformer( double m11, double m12, double m21, double m22 );
 
