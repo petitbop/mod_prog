@@ -36,6 +36,17 @@ Maillage<num_type, Container>::enditer(void){
 }
 
 template <typename num_type, template <typename, typename> class Container>
+void Maillage<num_type, Container>::deplacer(double dx, double dy){
+
+    typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
+
+    for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
+        curr_tri.deplacer(dx, dy);
+    }
+
+}
+
+template <typename num_type, template <typename, typename> class Container>
 void Maillage<num_type, Container>::transformer(double m11, double m12, double m21, double m22) {
 
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;

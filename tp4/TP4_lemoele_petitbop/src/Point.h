@@ -55,6 +55,8 @@ template <typename T> class Point {
 
         Point<T> translate(T dx, T dy) const;
 
+        void deplacer( double dx, double dy );
+
         void transformer( double m11, double m12, double m21, double m22 );
 
 };

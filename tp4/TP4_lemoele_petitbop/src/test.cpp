@@ -25,5 +25,6 @@ int main() {
 	Point<double> origin(0,0);
 	Maillage<double,std::vector> m1(3, 2, origin);
     std::cout << m1;
+    std::cout << 1.5 << std::endl;
 	
 }

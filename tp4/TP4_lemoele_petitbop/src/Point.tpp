@@ -36,6 +36,11 @@ template <typename T> Point<T> Point<T>::translate(T dx, T dy) const{
     return Point(this->x() + dx, this->y() + dy);
 }
 
+template <typename T> void Point<T>::deplacer(double dx, double dy){
+    this->absciss += dx;
+    this->ordinate += dy;
+}
+
 template <typename T> void Point<T>::transformer(double m11, double m12, double m21, double m22) {
 	T x = this->x();
 	T y = this->y();
