@@ -58,6 +58,17 @@ void Maillage<num_type, Container>::transformer(double m11, double m12, double m
 }
 
 template <typename num_type, template <typename, typename> class Container>
+void Maillage<num_type, Container>::tourner( double angle, const Point<num_type>& pt ) {
+
+    typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
+
+    for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
+        curr_tri.tourner(angle, pt);
+    }
+
+}
+
+template <typename num_type, template <typename, typename> class Container>
 std::ostream& operator<<(std::ostream& flux, Maillage<num_type, Container>& m){
 
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
