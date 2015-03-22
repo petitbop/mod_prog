@@ -52,14 +52,14 @@ void Maillage<num_type, Container>::deplacer(double dx, double dy){
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
 
     for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
-        curr_tri.deplacer(dx, dy);
+        curr_tri->deplacer(dx, dy);
     }
 
     typename std::vector< Segment<num_type> >::iterator curr_seg;
 
-    for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
-        curr_seg.p1().deplacer(dx, dy);
-        curr_seg.p2().deplacer(dx, dy);
+    for(curr_seg = endpoints.begin(); curr_seg != endpoints.end(); curr_seg++){
+        curr_seg->p1().deplacer(dx, dy);
+        curr_seg->p2().deplacer(dx, dy);
     }
 
 }
@@ -69,8 +69,8 @@ bool Maillage<num_type, Container>::is_adjacent(const Maillage<num_type, Contain
     typename std::vector< Segment<num_type> >::iterator curr_seg1;
     typename std::vector< Segment<num_type> >::iterator curr_seg2;
 
-    for(curr_seg1 = endpoints.beg(); curr_seg1 != endpoints.end(); curr_seg1++){
-        for(curr_seg2 = endpoints.beg(); curr_seg2 != endpoints.end(); curr_seg2++){
+    for(curr_seg1 = endpoints.begin(); curr_seg1 != endpoints.end(); curr_seg1++){
+        for(curr_seg2 = endpoints.begin(); curr_seg2 != endpoints.end(); curr_seg2++){
             if((*curr_seg1) == (*curr_seg2)){
                 common = (*curr_seg1);
                 return true;
@@ -92,14 +92,14 @@ void Maillage<num_type, Container>::transformer(double m11, double m12, double m
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
 
     for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
-        curr_tri.transformer(m11,m12,m21,m22);
+        curr_tri->transformer(m11,m12,m21,m22);
     }
 
     typename std::vector< Segment<num_type> >::iterator curr_seg;
 
-    for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
-        curr_seg.p1().transformer(m11, m12, m21, m22);
-        curr_seg.p2().transformer(m11, m12, m21, m22);
+    for(curr_seg = endpoints.begin(); curr_seg != endpoints.end(); curr_seg++){
+        curr_seg->p1().transformer(m11, m12, m21, m22);
+        curr_seg->p2().transformer(m11, m12, m21, m22);
     }
 
 }
@@ -110,14 +110,14 @@ void Maillage<num_type, Container>::tourner( double angle, const Point<num_type>
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
 
     for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
-        curr_tri.tourner(angle, pt);
+        curr_tri->tourner(angle, pt);
     }
 
     typename std::vector< Segment<num_type> >::iterator curr_seg;
 
-    for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
-        curr_seg.p1().tourner(angle, pt);
-        curr_seg.p2().tourner(angle, pt);
+    for(curr_seg = endpoints.begin(); curr_seg != endpoints.end(); curr_seg++){
+        curr_seg->p1().tourner(angle, pt);
+        curr_seg->p2().tourner(angle, pt);
     }
 
 }
