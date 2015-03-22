@@ -1,4 +1,27 @@
 analyse.txt
 
-TP 3 : HERITAGE
+TP 4 : Manipulation des patrons et de la STL
+Analyse des performances.
+
+
+Question 1 - en fonction de la taille du maillage
+
+Pour un maillage de taille m * n, il y a 2 * 4 * m * n points à calculer et insérer dans le conteneur.
+Ainsi, on aura un temps quadratique, en O(nm).
+En l'occurence, la commande time indique un temps CPU quasi-nul jusqu'à n * m = 5000, 
+et ce temps augmente linéairement avec n ou m, quadratiquement avec n et m.
+La limite maximale est de 10e8, à partir de laquelle std lance une erreur d'allocation mémoire.
+
+
+Question 2 - en fonction du conteneur STL
+
+Les trois conteneurs STL adaptés à ce TP sont les trois conteneurs séuqentiels : vector, list et deque.
+Les conteneurs sont équivalents. Par exemple, pour une rotation de PI/2 autour de l'origine, 
+les temps CPU sont les suivants :
+- 51.988s pour vector
+- 53.229s pour list
+- 51.453s pour deque
+
+
+Question 3 - en fonction de l'algorithme STL
 
