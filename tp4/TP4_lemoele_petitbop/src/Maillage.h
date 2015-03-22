@@ -43,6 +43,10 @@ class Maillage {
         //! @param origine  The origin on the grid.
         Maillage(int m, int n, const Point<T>& origine);
 
+        typename Container< Triangle<T>, std::allocator<T> >::iterator beginiter(void);
+
+        typename Container< Triangle<T>, std::allocator<T> >::iterator enditer(void);
+
 };
 
 #include "Maillage.tpp"
