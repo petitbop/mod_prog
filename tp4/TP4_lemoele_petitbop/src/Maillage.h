@@ -27,7 +27,6 @@
 //! @brief		Template class creating an 2D-grid.
 //!
 template <typename T, template <typename, typename> class Container>
-// template <typename T, class Container = std::allocator<T> >
 class Maillage {
 
     private :
@@ -49,6 +48,8 @@ class Maillage {
         typename Container< Triangle<T>, std::allocator<T> >::iterator beginiter(void);
 
         typename Container< Triangle<T>, std::allocator<T> >::iterator enditer(void);
+
+        void transformer( double m11, double m12, double m21, double m22 );
 
 };
 

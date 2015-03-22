@@ -10,7 +10,6 @@
 
 
 template <typename num_type, template <typename, typename> class Container>
-// template <typename T, class Container = std::allocator<T> >
 Maillage<num_type, Container>::Maillage(int m, int n, const Point<num_type> & O): origin(O), m(m), n(n){
     for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
@@ -34,6 +33,17 @@ template <typename num_type, template <typename, typename> class Container>
 typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator
 Maillage<num_type, Container>::enditer(void){
     return grid.end();
+}
+
+template <typename num_type, template <typename, typename> class Container>
+void Maillage<num_type, Container>::transformer(double m11, double m12, double m21, double m22) {
+
+    typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
+
+    for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
+        curr_tri.transformer(m11,m12,m21,m22);
+    }
+
 }
 
 template <typename num_type, template <typename, typename> class Container>

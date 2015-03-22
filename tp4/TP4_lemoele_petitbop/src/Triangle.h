@@ -59,6 +59,7 @@ template <typename T> class Triangle {
         //! @return         The third point of the triangle.
         Point<T> p3();
 
+        void transformer( double m11, double m12, double m21, double m22 );
 
 };
 

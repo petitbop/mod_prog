@@ -36,6 +36,13 @@ template <typename T> Point<T> Point<T>::translate(T dx, T dy) const{
     return Point(this->x() + dx, this->y() + dy);
 }
 
+template <typename T> void Point<T>::transformer(double m11, double m12, double m21, double m22) {
+	T x = this->x();
+	T y = this->y();
+    this->absciss = x*m11 + y*m21;
+    this->ordinate = x*m12 + y*m22;
+}
+
 template <typename T>
 std::ostream& operator<<(std::ostream& flux, Point<T>const& p){
     flux << p.x() << " " << p.y() << std::endl;
