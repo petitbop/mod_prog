@@ -37,7 +37,7 @@ class Maillage {
         int m;
         int n;
 
-        bool is_adjacent(const Maillage<T, Container>& m, Segment<T>& common);
+        bool is_adjacent(const Maillage<T, Container>& m, int& common);
 
     public :
         //=============================================================================
