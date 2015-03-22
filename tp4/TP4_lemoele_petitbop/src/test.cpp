@@ -24,5 +24,6 @@ int main() {
 	std::cout<<std::endl<<"====> Test du constructeur de Maillage :"<<std::endl;
 	Point<double> origin(0,0);
 	Maillage<double,std::vector> m1(3, 2, origin);
+    std::cout << m1;
 	
 }

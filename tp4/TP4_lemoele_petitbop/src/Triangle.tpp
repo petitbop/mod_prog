@@ -22,15 +22,15 @@ template <typename T> Triangle<T>::Triangle(Point<T> p1, Point<T> p2, Point<T> p
 //=============================================================================
 //                              ACCESSORS
 //=============================================================================
-template <typename T> Point<T> Triangle<T>::p1() {
+template <typename T> Point<T> Triangle<T>::p1() const {
 	return point1;
 }
 
-template <typename T> Point<T> Triangle<T>::p2() {
+template <typename T> Point<T> Triangle<T>::p2() const {
 	return point2;
 }
 
-template <typename T> Point<T> Triangle<T>::p3() {
+template <typename T> Point<T> Triangle<T>::p3() const {
 	return point3;
 }
 

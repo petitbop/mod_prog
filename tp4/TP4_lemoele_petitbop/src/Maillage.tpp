@@ -37,7 +37,7 @@ Maillage<num_type, Container>::enditer(void){
 }
 
 template <typename num_type, template <typename, typename> class Container>
-std::ostream& operator<<(std::ostream& flux, Maillage<num_type, Container>const& m){
+std::ostream& operator<<(std::ostream& flux, Maillage<num_type, Container>& m){
 
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
 
