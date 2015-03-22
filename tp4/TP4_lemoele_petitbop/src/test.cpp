@@ -23,8 +23,18 @@ int main() {
 
 	std::cout<<std::endl<<"====> Test du constructeur de Maillage :"<<std::endl;
 	Point<double> origin(0,0);
-	Maillage<double,std::vector> m1(3, 2, origin);
-    std::cout << m1;
-    std::cout << 1.5 << std::endl;
+	Maillage<double,std::vector> m1(1, 2, origin);
+	std::cout << m1;
+	
+	std::cout<<std::endl<<"====> Test des transformations de Maillage :"<<std::endl;
+	std::cout<<"==> Transformer (2,3,4,5) :"<<std::endl;
+	m1.transformer(2,3,4,5);
+	std::cout << m1;
+	std::cout<<"==> Deplacer (3,4) :"<<std::endl;
+	m1.deplacer(3,4);
+	std::cout << m1;
+	std::cout<<"==> Tourner (M_PI/2, p2) :"<<std::endl;
+	m1.tourner(M_PI/2, p2);
+	std::cout << m1;
 	
 }
