@@ -5,7 +5,8 @@ DOCFILE = ./doc
 
 EXEC 	=	$(SRCFILE)/test
 SRC 	=	$(wildcard $(SRCFILE)/*.cpp)
-OBJ 	=	$(SRC:$(SRCFILE)/%.cpp=$(SRCFILE)/%.o)
+TMP 	=	$(wildcard $(SRCFILE)/*.tpp)
+OBJ 	=	$(SRC:$(SRCFILE)/%.tpp=$(SRCFILE)/%.o)
 HEAD 	=	$(wildcard $(SRCFILE)/*.h)
 
 CXX 		=	g++
@@ -17,7 +18,7 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CXX) -o $@ $(CXXFLAGS) $^
 
-$(SRCFILE)/%.o: ($SRCFILE)/%.cpp ($SRCFILE)/%.h
+$(SRCFILE)/%.o: ($SRCFILE)/%.tpp ($SRCFILE)/%.h
 	$(CXX) -o $@ $(CXXFLAGS) -c $< 
 
 # Executing all executable files
