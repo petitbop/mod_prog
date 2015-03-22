@@ -1,3 +1,4 @@
+/* vim: set filetype=cpp: */
 //!
 //! @file 		Maillage.tpp
 //! @author 	lemoele petitbop
@@ -8,8 +9,8 @@
 #include "Maillage.h"
 
 
-template <typename T, template <typename> class Container>
+template <typename num_type, template <typename, typename> class Container>
 // template <typename T, class Container = std::allocator<T> >
-Maillage<T, Container>::Maillage(int m, int n, const Point<T> & origine): grid(4*m*n){
+Maillage<num_type, Container>::Maillage(int m, int n, const Point<num_type> & origine){
     
 }

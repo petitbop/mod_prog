@@ -1,6 +1,7 @@
 #include "Point.h"
 #include "Triangle.h"
 #include "Maillage.h"
+#include<vector>
 
 int main() {
 	

@@ -26,12 +26,12 @@
 //!
 //! @brief		Template class creating an 2D-grid.
 //!
-template <typename T, template <typename> class Container>
+template <typename T, template <typename, typename> class Container>
 // template <typename T, class Container = std::allocator<T> >
 class Maillage {
 
     private :
-        Container<Triangle<T> > grid;
+        Container< Triangle<T>, std::allocator<T> > grid;
 
     public :
         //=============================================================================
