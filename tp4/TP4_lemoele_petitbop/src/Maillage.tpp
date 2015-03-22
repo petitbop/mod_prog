@@ -11,7 +11,7 @@
 
 template <typename num_type, template <typename, typename> class Container>
 // template <typename T, class Container = std::allocator<T> >
-Maillage<num_type, Container>::Maillage(int m, int n, const Point<num_type> & O){
+Maillage<num_type, Container>::Maillage(int m, int n, const Point<num_type> & O): origin(O), m(m), n(n){
     for(int i = 0; i < m; i++){
         for(int j = 0; j < n; j++){
             Point<num_type> P = O.translate(i, j);
@@ -40,9 +40,11 @@ template <typename num_type, template <typename, typename> class Container>
 std::ostream& operator<<(std::ostream& flux, Maillage<num_type, Container>const& m){
 
     typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
+
     for(curr_tri = m.beginiter(); curr_tri != m.enditer(); curr_tri++){
         flux << (*curr_tri);
         flux << std::endl;
     }
+
     return flux;
 }

@@ -32,6 +32,9 @@ class Maillage {
 
     private :
         Container< Triangle<T>, std::allocator<T> > grid;
+        Point<T> origin;
+        int m;
+        int n;
 
     public :
         //=============================================================================
