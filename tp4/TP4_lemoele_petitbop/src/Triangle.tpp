@@ -46,6 +46,12 @@ template <typename T> void Triangle<T>::transformer(double m11, double m12, doub
 	this->p3().transformer(m11, m12, m21, m22);
 }
 
+template <typename T> void Triangle<T>::tourner(double angle, const Point<T>& pt) {
+	this->p1().tourner(angle, pt);
+	this->p2().tourner(angle, pt);
+	this->p3().tourner(angle, pt);
+}
+
 template <typename T>
 std::ostream& operator<<(std::ostream& flux, Triangle<T>const& t){
     flux << t.p1();

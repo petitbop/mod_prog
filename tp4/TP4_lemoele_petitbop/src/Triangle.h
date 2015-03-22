@@ -63,6 +63,8 @@ template <typename T> class Triangle {
 
         void transformer( double m11, double m12, double m21, double m22 );
 
+        void tourner( double angle, const Point<T>& pt );
+        
 };
 
 template <typename T>

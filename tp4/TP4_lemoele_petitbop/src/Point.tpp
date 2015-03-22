@@ -48,6 +48,15 @@ template <typename T> void Point<T>::transformer(double m11, double m12, double 
     this->ordinate = x*m12 + y*m22;
 }
 
+template <typename T> void Point<T>::tourner( double angle, const Point<T>& pt ) {
+	T x = this->x();
+	T y = this->y();
+	T xp = pt->x();
+	T yp = pt->y();
+	this->absciss = (x-xp)*cos(angle) - (y-yp)*sin(angle) + xp;
+	this->ordinate = (x-xp)*sin(angle) + (y-yp)*cos(angle) + yp;
+}
+
 template <typename T>
 std::ostream& operator<<(std::ostream& flux, Point<T>const& p){
     flux << p.x() << " " << p.y() << std::endl;

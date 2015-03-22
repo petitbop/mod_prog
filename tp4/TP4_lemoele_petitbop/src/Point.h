@@ -18,6 +18,7 @@
 #include <fstream>
 #include <ctime>
 #include <cstring>
+#include <math.h>
 
 //!
 //! @class 		Point
@@ -58,6 +59,8 @@ template <typename T> class Point {
         void deplacer( double dx, double dy );
 
         void transformer( double m11, double m12, double m21, double m22 );
+
+        void tourner( double angle, const Point<T>& pt );
 
 };
 
