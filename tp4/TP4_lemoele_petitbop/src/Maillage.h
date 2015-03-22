@@ -38,6 +38,7 @@ class Maillage {
         int n;
 
         bool is_adjacent(const Maillage<T, Container>& m, int& common);
+        void set_endpoints(Point<T> A, Point<T> B, Point<T> C, Point<T> D);
 
     public :
         //=============================================================================
@@ -53,7 +54,7 @@ class Maillage {
 
         typename Container< Triangle<T>, std::allocator<T> >::iterator enditer(void);
 
-        void fusionner(const Maillage<T, Container>& m);
+        void fusionner(Maillage<T, Container>& m);
 
         void deplacer( double dx, double dy );
 

@@ -36,5 +36,13 @@ int main() {
 	std::cout<<"==> Tourner (M_PI/2, p2) :"<<std::endl;
 	m1.tourner(M_PI/2, p2);
 	std::cout << m1;
+	std::cout<<"==> Fusionner (m) :"<<std::endl;
+    Point<double> p0(0,0);
+    Point<double> p4(2,0);
+    m1 = Maillage<double,std::vector>(2, 2, p0);
+    Maillage<double,std::vector> m2 = Maillage<double,std::vector>(2, 2, p4);
+    m1.fusionner(m2);
+    std::cout << m1;
+    
 	
 }

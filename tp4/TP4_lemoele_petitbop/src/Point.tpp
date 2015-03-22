@@ -64,6 +64,6 @@ std::ostream& operator<<(std::ostream& flux, Point<T>const& p){
 }
 
 template <typename T>
-bool operator==(Point<T> p1, Point<T>const& p2){
+bool operator==(Point<T>const& p1, Point<T>const& p2){
     return (p1.x() == p2.x() && p1.y() == p2.y());
 }

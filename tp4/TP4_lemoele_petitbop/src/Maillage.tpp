@@ -78,27 +78,51 @@ bool Maillage<num_type, Container>::is_adjacent(const Maillage<num_type, Contain
 }
 
 template <typename num_type, template <typename, typename> class Container>
-void Maillage<num_type, Container>::fusionner(const Maillage<num_type, Container>& other){
+void Maillage<num_type, Container>::set_endpoints(Point<num_type> A, Point<num_type> B, Point<num_type> C, Point<num_type> D){
+    endpoints.clear();
+
+    endpoints.push_back(Segment<num_type>(A, B));
+    endpoints.push_back(Segment<num_type>(B, C));
+    endpoints.push_back(Segment<num_type>(C, D));
+    endpoints.push_back(Segment<num_type>(D, A));
+}
+
+template <typename num_type, template <typename, typename> class Container>
+void Maillage<num_type, Container>::fusionner(Maillage<num_type, Container>& other){
     int common;
+
     if(is_adjacent(other, common)){
-        int new_m = m;
-        int new_n = n;
-        Point<num_type> new_origin;
+        Point<num_type> A = endpoints[0].p1();
+        Point<num_type> B = endpoints[0].p1();
+        Point<num_type> C = endpoints[0].p1();
+        Point<num_type> D = endpoints[0].p1();
+
+        Point<num_type> A_prime = other.endpoints[0].p1();
+        Point<num_type> B_prime = other.endpoints[0].p1();
+        Point<num_type> C_prime = other.endpoints[0].p1();
+        Point<num_type> D_prime = other.endpoints[0].p1();
+
         if(common == 0){
-            new_origin = other.endpoints[0].p1();
-            new_n += other.n;
+            set_endpoints(A_prime, B_prime, C, D);
+            n += other.n;
         } else if (common == 1){
-            new_origin = this->endpoints[0].p1();
-            new_m += other.m;
+            set_endpoints(A, B_prime, C_prime, D);
+            m += other.m;
         } else if (common == 2){
-            new_origin = this->endpoints[0].p1();
-            new_n += other.n;
+            set_endpoints(A, B, C_prime, D_prime);
+            n += other.n;
         } else if (common == 3){
-            new_origin = other.endpoints[0].p1();
-            new_m += other.m;
+            set_endpoints(A_prime, B, C, D_prime);
+            m += other.m;
         }
-        (*this) = Maillage<num_type, Container>(new_m, new_n, new_origin);
+
+        typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
+        for(curr_tri = other.beginiter(); curr_tri != other.enditer(); curr_tri++){
+            grid.push_back((*curr_tri));
+        }
+
     }
+
 }
 
 template <typename num_type, template <typename, typename> class Container>
