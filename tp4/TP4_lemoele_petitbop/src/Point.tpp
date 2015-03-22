@@ -1,3 +1,4 @@
+/* vim: set filetype=cpp: */
 //!
 //! @file 		Point.tpp
 //! @author 	lemoele petitbop
@@ -29,4 +30,8 @@ template <typename T> T Point<T>::x() const {
 
 template <typename T> T Point<T>::y() const {
 	return ordinate;
+}
+
+template <typename T> Point<T> Point<T>::translate(T dx, T dy) const{
+    return Point(this->x() + dx, this->y() + dy);
 }

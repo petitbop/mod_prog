@@ -53,6 +53,8 @@ template <typename T> class Point {
         //! @return         The ordinate of the point.
         T y() const;
 
+        Point<T> translate(T dx, T dy) const;
+
 };
 
 #include "Point.tpp"
