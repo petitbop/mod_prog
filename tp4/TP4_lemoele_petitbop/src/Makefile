@@ -2,7 +2,8 @@
 
 EXEC 	=	test
 SRC 	=	$(wildcard *.cpp)
-OBJ 	=	$(SRC:%.cpp=%.o)
+TMP 	=	$(wildcard *.tpp)
+OBJ 	=	$(SRC:%.tpp=%.o)
 HEAD 	=	$(wildcard *.h)
 
 CXX 		=	g++
@@ -14,7 +15,7 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CXX) -o $@ $(CXXFLAGS) $^
 
-$(SRCFILE)/%.o: ($SRCFILE)/%.cpp ($SRCFILE)/%.h
+$(SRCFILE)/%.o: ($SRCFILE)/%.tpp ($SRCFILE)/%.h
 	$(CXX) -o $@ $(CXXFLAGS) -c $< 
 
 # Executing all executable files
