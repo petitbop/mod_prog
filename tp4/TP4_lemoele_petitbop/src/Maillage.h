@@ -49,5 +49,8 @@ class Maillage {
 
 };
 
+template <typename T, template <typename, typename> class Container>
+std::ostream& operator<<(std::ostream& flux, Maillage<T, Container>const& m);
+
 #include "Maillage.tpp"
 #endif

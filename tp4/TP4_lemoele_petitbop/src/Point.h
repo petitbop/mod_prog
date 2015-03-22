@@ -57,5 +57,8 @@ template <typename T> class Point {
 
 };
 
+template <typename T>
+std::ostream& operator<<(std::ostream& flux, Point<T>const& m);
+
 #include "Point.tpp"
 #endif

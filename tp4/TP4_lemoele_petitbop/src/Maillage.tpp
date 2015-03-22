@@ -36,3 +36,13 @@ Maillage<num_type, Container>::enditer(void){
     return grid.end();
 }
 
+template <typename num_type, template <typename, typename> class Container>
+std::ostream& operator<<(std::ostream& flux, Maillage<num_type, Container>const& m){
+
+    typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator curr_tri;
+    for(curr_tri = m.beginiter(); curr_tri != m.enditer(); curr_tri++){
+        flux << (*curr_tri);
+        flux << std::endl;
+    }
+    return flux;
+}

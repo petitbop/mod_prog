@@ -1,3 +1,4 @@
+/* vim: set filetype=cpp: */
 //!
 //! @file 		Triangle.tpp
 //! @author 	lemoele petitbop
@@ -32,3 +33,13 @@ template <typename T> Point<T> Triangle<T>::p2() {
 template <typename T> Point<T> Triangle<T>::p3() {
 	return point3;
 }
+
+template <typename T>
+std::ostream& operator<<(std::ostream& flux, Triangle<T>const& t){
+    flux << t.p1();
+    flux << t.p2();
+    flux << t.p3();
+    flux << t.p1();
+    return flux;
+}
+

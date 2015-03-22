@@ -62,5 +62,8 @@ template <typename T> class Triangle {
 
 };
 
+template <typename T>
+std::ostream& operator<<(std::ostream& flux, Triangle<T>const& t);
+
 #include "Triangle.tpp"
 #endif
