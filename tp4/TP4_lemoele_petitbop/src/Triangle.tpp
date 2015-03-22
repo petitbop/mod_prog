@@ -34,6 +34,18 @@ template <typename T> Point<T> Triangle<T>::p3() const {
 	return point3;
 }
 
+template <typename T> Point<T>& Triangle<T>::p1() {
+	return point1;
+}
+
+template <typename T> Point<T>& Triangle<T>::p2() {
+	return point2;
+}
+
+template <typename T> Point<T>& Triangle<T>::p3() {
+	return point3;
+}
+
 template <typename T> void Triangle<T>::deplacer(double dx, double dy){
 	this->p1().deplacer(dx, dy);
 	this->p2().deplacer(dx, dy);
