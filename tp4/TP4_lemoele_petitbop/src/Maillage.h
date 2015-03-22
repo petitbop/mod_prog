@@ -19,6 +19,7 @@
 #include <ctime>
 #include <cstring>
 
+#include "Segment.h"
 #include "Triangle.h"
 
 //!
@@ -31,6 +32,7 @@ class Maillage {
 
     private :
         Container< Triangle<T>, std::allocator<T> > grid;
+        std::vector< Segment<T> > endpoints;
         Point<T> origin;
         int m;
         int n;
@@ -48,6 +50,8 @@ class Maillage {
         typename Container< Triangle<T>, std::allocator<T> >::iterator beginiter(void);
 
         typename Container< Triangle<T>, std::allocator<T> >::iterator enditer(void);
+
+        void fusionner(const Maillage<T, Container>& m);
 
         void deplacer( double dx, double dy );
 

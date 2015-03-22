@@ -22,6 +22,17 @@ Maillage<num_type, Container>::Maillage(int m, int n, const Point<num_type> & O)
             grid.push_back(Triangle<num_type>(R, S, Q));
         }
     }
+
+    Point<num_type> A(O);
+    Point<num_type> B(O.translate(m, 0));
+    Point<num_type> C(O.translate(0, n));
+    Point<num_type> D(O.translate(m, n));
+
+    endpoints.push_back(Segment<num_type>(A, B));
+    endpoints.push_back(Segment<num_type>(B, C));
+    endpoints.push_back(Segment<num_type>(C, D));
+    endpoints.push_back(Segment<num_type>(D, A));
+
 }
 template <typename num_type, template <typename, typename> class Container>
 typename Container< Triangle<num_type>, std::allocator<num_type> >::iterator
@@ -44,6 +55,17 @@ void Maillage<num_type, Container>::deplacer(double dx, double dy){
         curr_tri.deplacer(dx, dy);
     }
 
+    typename std::vector< Segment<num_type> >::iterator curr_seg;
+
+    for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
+        curr_seg[0].deplacer(dx, dy);
+        curr_seg[1].deplacer(dx, dy);
+    }
+
+}
+
+template <typename num_type, template <typename, typename> class Container>
+void Maillage<num_type, Container>::fusionner(const Maillage<num_type, Container>& m){
 }
 
 template <typename num_type, template <typename, typename> class Container>
@@ -53,6 +75,13 @@ void Maillage<num_type, Container>::transformer(double m11, double m12, double m
 
     for(curr_tri = this->beginiter(); curr_tri != this->enditer(); curr_tri++){
         curr_tri.transformer(m11,m12,m21,m22);
+    }
+
+    typename std::vector< Segment<num_type> >::iterator curr_seg;
+
+    for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
+        curr_seg[0].transformer(m11, m12, m21, m22);
+        curr_seg[1].transformer(m11, m12, m21, m22);
     }
 
 }
