@@ -65,16 +65,11 @@ void Maillage<num_type, Container>::deplacer(double dx, double dy){
 }
 
 template <typename num_type, template <typename, typename> class Container>
-bool Maillage<num_type, Container>::is_adjacent(const Maillage<num_type, Container>& m, Segment<num_type>& common){
-    typename std::vector< Segment<num_type> >::iterator curr_seg1;
-    typename std::vector< Segment<num_type> >::iterator curr_seg2;
-
-    for(curr_seg1 = endpoints.begin(); curr_seg1 != endpoints.end(); curr_seg1++){
-        for(curr_seg2 = endpoints.begin(); curr_seg2 != endpoints.end(); curr_seg2++){
-            if((*curr_seg1) == (*curr_seg2)){
-                common = (*curr_seg1);
-                return true;
-            }
+bool Maillage<num_type, Container>::is_adjacent(const Maillage<num_type, Container>& m, int& common){
+    for(int i = 0; i < 4; i++){
+        if(endpoints[i] == m.endpoints[(i+2)%4]){
+            common = i;
+            return true;
         }
     }
 
@@ -83,7 +78,27 @@ bool Maillage<num_type, Container>::is_adjacent(const Maillage<num_type, Contain
 }
 
 template <typename num_type, template <typename, typename> class Container>
-void Maillage<num_type, Container>::fusionner(const Maillage<num_type, Container>& m){
+void Maillage<num_type, Container>::fusionner(const Maillage<num_type, Container>& other){
+    int common;
+    if(is_adjacent(other, common)){
+        int new_m = m;
+        int new_n = n;
+        Point<num_type> new_origin;
+        if(common == 0){
+            new_origin = other.endpoints[0].p1();
+            new_n += other.n;
+        } else if (common == 1){
+            new_origin = this->endpoints[0].p1();
+            new_m += other.m;
+        } else if (common == 2){
+            new_origin = this->endpoints[0].p1();
+            new_n += other.n;
+        } else if (common == 3){
+            new_origin = other.endpoints[0].p1();
+            new_m += other.m;
+        }
+        (*this) = Maillage<num_type, Container>(new_m, new_n, new_origin);
+    }
 }
 
 template <typename num_type, template <typename, typename> class Container>
