@@ -14,7 +14,17 @@ Point<T> Segment<T>::p1(void) const{
 }
 
 template <typename T>
+Point<T>& Segment<T>::p1(void){
+    return endpoints[0];
+}
+
+template <typename T>
 Point<T> Segment<T>::p2(void) const{
+    return endpoints[1];
+}
+
+template <typename T>
+Point<T>& Segment<T>::p2(void){
     return endpoints[1];
 }
 

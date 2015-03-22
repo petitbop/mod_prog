@@ -58,9 +58,27 @@ void Maillage<num_type, Container>::deplacer(double dx, double dy){
     typename std::vector< Segment<num_type> >::iterator curr_seg;
 
     for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
-        curr_seg[0].deplacer(dx, dy);
-        curr_seg[1].deplacer(dx, dy);
+        curr_seg.p1().deplacer(dx, dy);
+        curr_seg.p2().deplacer(dx, dy);
     }
+
+}
+
+template <typename num_type, template <typename, typename> class Container>
+bool Maillage<num_type, Container>::is_adjacent(const Maillage<num_type, Container>& m, Segment<num_type>& common){
+    typename std::vector< Segment<num_type> >::iterator curr_seg1;
+    typename std::vector< Segment<num_type> >::iterator curr_seg2;
+
+    for(curr_seg1 = endpoints.beg(); curr_seg1 != endpoints.end(); curr_seg1++){
+        for(curr_seg2 = endpoints.beg(); curr_seg2 != endpoints.end(); curr_seg2++){
+            if((*curr_seg1) == (*curr_seg2)){
+                common = (*curr_seg1);
+                return true;
+            }
+        }
+    }
+
+    return false;
 
 }
 
@@ -80,8 +98,8 @@ void Maillage<num_type, Container>::transformer(double m11, double m12, double m
     typename std::vector< Segment<num_type> >::iterator curr_seg;
 
     for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
-        curr_seg[0].transformer(m11, m12, m21, m22);
-        curr_seg[1].transformer(m11, m12, m21, m22);
+        curr_seg.p1().transformer(m11, m12, m21, m22);
+        curr_seg.p2().transformer(m11, m12, m21, m22);
     }
 
 }

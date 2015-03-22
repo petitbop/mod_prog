@@ -37,6 +37,8 @@ class Segment {
         Segment(Point<T> const& p1, Point<T> const& p2);
         Point<T> p1(void) const;
         Point<T> p2(void) const;
+        Point<T>& p1(void);
+        Point<T>& p2(void);
 
 
 };
