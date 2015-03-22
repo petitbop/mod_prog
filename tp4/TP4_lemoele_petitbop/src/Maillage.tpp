@@ -95,6 +95,13 @@ void Maillage<num_type, Container>::tourner( double angle, const Point<num_type>
         curr_tri.tourner(angle, pt);
     }
 
+    typename std::vector< Segment<num_type> >::iterator curr_seg;
+
+    for(curr_seg = endpoints.beg(); curr_seg != endpoints.end(); curr_seg++){
+        curr_seg[0].tourner(angle, pt);
+        curr_seg[1].tourner(angle, pt);
+    }
+
 }
 
 template <typename num_type, template <typename, typename> class Container>
