@@ -41,6 +41,7 @@ int main() {
     Point<double> p4(2,0);
     m1 = Maillage<double,std::vector>(2, 2, p0);
     Maillage<double,std::vector> m2 = Maillage<double,std::vector>(2, 2, p4);
+    //std::cout << m2;
     m1.fusionner(m2);
     std::cout << m1;
     

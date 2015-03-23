@@ -89,9 +89,10 @@ void Maillage<num_type, Container>::set_endpoints(Point<num_type> A, Point<num_t
 
 template <typename num_type, template <typename, typename> class Container>
 void Maillage<num_type, Container>::fusionner(Maillage<num_type, Container>& other){
-    int common;
+    int common = 1;
 
-    if(is_adjacent(other, common)){
+    // bug à régler...
+//    if(is_adjacent(other, common)){
         Point<num_type> A = endpoints[0].p1();
         Point<num_type> B = endpoints[0].p1();
         Point<num_type> C = endpoints[0].p1();
@@ -121,7 +122,7 @@ void Maillage<num_type, Container>::fusionner(Maillage<num_type, Container>& oth
             grid.push_back((*curr_tri));
         }
 
-    }
+//    }
 
 }
 
